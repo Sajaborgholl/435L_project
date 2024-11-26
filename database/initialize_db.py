@@ -1,5 +1,5 @@
 import sqlite3
-
+from werkzeug.security import generate_password_hash
 
 def initialize_db():
     # Connect to the database
@@ -11,9 +11,17 @@ def initialize_db():
         sql_script = sql_file.read()
     cursor.executescript(sql_script)
 
+    # Insert an admin user
+    admin_user = ('Admin User', 'admin', generate_password_hash('admin_password'), 30, '123 Admin St', 'Male', 'Single', 0, 1)
+    cursor.execute('''
+        INSERT INTO Customers (FullName, Username, Password, Age, Address, Gender, MaritalStatus, Wallet, Role)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ''', admin_user)
+
     # Commit changes and close the connection
     conn.commit()
     conn.close()
+
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 -- Customers Table
 CREATE TABLE IF NOT EXISTS Customers (
-    CustomerID INTEGER PRIMARY KEY,
+    CustomerID INTEGER PRIMARY KEY AUTOINCREMENT,
     FullName TEXT NOT NULL,
     Username TEXT NOT NULL UNIQUE,
     Password TEXT NOT NULL,
@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS Customers (
     Gender TEXT CHECK(Gender IN ('Male', 'Female', 'Other')),
     MaritalStatus TEXT CHECK(MaritalStatus IN ('Single', 'Married', 'Divorced', 'Widowed')),
     Wallet REAL DEFAULT 0 -- Represents the customer's wallet balance
+    Role Boolean DEFAULT 0 -- 0 for regular customers, 1 for admins
 );
 
 -- Inventory Table
@@ -55,13 +56,6 @@ CREATE TABLE IF NOT EXISTS Reviews (
     Moderated INTEGER DEFAULT 0, -- 0 for unmoderated, 1 for moderated
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
     FOREIGN KEY (ProductID) REFERENCES Inventory(ProductID)
-);
-
--- Admins Table (For Moderation Purposes)
-CREATE TABLE IF NOT EXISTS Admins (
-    AdminID INTEGER PRIMARY KEY,
-    Username TEXT NOT NULL UNIQUE,
-    Password TEXT NOT NULL
 );
 
 -- API Logs Table (Optional for Tracking API Requests)
