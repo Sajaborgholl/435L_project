@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from initialize_db import initialize_db
 from crud_customers import (
     register_customer,
     delete_customer,
@@ -226,4 +227,5 @@ def subtract_money_from_wallet(username):
 
 
 if __name__ == '__main__':
-    app.run(port=5001, debug=True)
+    initialize_db()
+    app.run(host='0.0.0.0', port=5001, debug=True)
