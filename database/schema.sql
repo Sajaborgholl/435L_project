@@ -6,11 +6,12 @@ CREATE TABLE IF NOT EXISTS Customers (
     Password TEXT NOT NULL,
     Age INTEGER,
     Address TEXT,
-    Gender TEXT CHECK(Gender IN ('Male', 'Female', 'Other')),
-    MaritalStatus TEXT CHECK(MaritalStatus IN ('Single', 'Married', 'Divorced', 'Widowed')),
-    Wallet REAL DEFAULT 0 -- Represents the customer's wallet balance
-    Role Boolean DEFAULT 0 -- 0 for regular customers, 1 for admins
+    Gender TEXT CHECK (Gender IN ('Male', 'Female', 'Other')),
+    MaritalStatus TEXT CHECK (MaritalStatus IN ('Single', 'Married', 'Divorced', 'Widowed')),
+    Wallet REAL DEFAULT 0,
+    UserRole INTEGER DEFAULT 0 
 );
+
 
 -- Inventory Table
 CREATE TABLE IF NOT EXISTS Inventory (

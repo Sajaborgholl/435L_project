@@ -14,7 +14,7 @@ def initialize_db():
     # Insert an admin user
     admin_user = ('Admin User', 'admin', generate_password_hash('admin_password'), 30, '123 Admin St', 'Male', 'Single', 0, 1)
     cursor.execute('''
-        INSERT INTO Customers (FullName, Username, Password, Age, Address, Gender, MaritalStatus, Wallet, Role)
+        INSERT INTO Customers (FullName, Username, Password, Age, Address, Gender, MaritalStatus, Wallet, UserRole)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', admin_user)
 
