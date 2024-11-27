@@ -72,21 +72,41 @@ def update_customer(username, **kwargs):
         **kwargs: Key-value pairs representing the fields to update.
 
     Returns:
-        dict: A dictionary containing:
-            - "message" (str): Success message if the update is successful.
-            - "error" (str): Error message if the customer does not exist.
+        dict: A dictionary containing a success message or an error message.
     """
     conn = get_db_connection()
     cursor = conn.cursor()
-    customer = cursor.execute('SELECT * FROM Customers WHERE Username = ?', (username,)).fetchone()
+    customer = cursor.execute(
+        'SELECT * FROM Customers WHERE Username = ?', (username,)
+    ).fetchone()
     if not customer:
         conn.close()
         return {"error": "Customer not found"}
-    
-    fields = ', '.join(f"{key} = ?" for key in kwargs)
-    values = list(kwargs.values())
+
+    # Mapping input keys to database column names
+    column_mappings = {
+        'full_name': 'FullName',
+        'password': 'Password',
+        'age': 'Age',
+        'address': 'Address',
+        'gender': 'Gender',
+        'marital_status': 'MaritalStatus',
+        'wallet': 'Wallet',
+        'user_role': 'UserRole'
+    }
+
+    fields = []
+    values = []
+    for key, value in kwargs.items():
+        if key in column_mappings:
+            fields.append(f"{column_mappings[key]} = ?")
+            values.append(value)
+        else:
+            conn.close()
+            return {"error": f"Invalid field: {key}"}
     values.append(username)
-    cursor.execute(f'UPDATE Customers SET {fields} WHERE Username = ?', values)
+    fields_str = ', '.join(fields)
+    cursor.execute(f'UPDATE Customers SET {fields_str} WHERE Username = ?', values)
     conn.commit()
     conn.close()
     return {"message": "Customer updated successfully"}

@@ -1,12 +1,11 @@
 import sqlite3
-
+from flask import current_app
 def get_db_connection():
     """
-    Establishes a connection to the SQLite database 'ecommerce.db' and sets the row factory to sqlite3.Row.
-
-    Returns:
-        sqlite3.Connection: A connection object to the 'ecommerce.db' database.
+    Get a connection to the database.
+    Uses the database path from Flask's app config.
     """
-    conn = sqlite3.connect('ecommerce.db')
+    db_path = current_app.config.get('DATABASE', 'ecommerce.db')  # Default to 'ecommerce.db'
+    conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     return conn

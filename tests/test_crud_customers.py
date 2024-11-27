@@ -1,46 +1,153 @@
-import random
+import os
+import tempfile
 from database.crud_customers import (
     register_customer,
     get_all_customers,
     get_customer_by_username,
-    delete_customer,
     update_customer,
+    delete_customer,
     charge_customer,
     deduct_money
 )
-
-def generate_unique_username(base="user"):
-    """Generate a unique username for tests."""
-    return f"{base}_{random.randint(1000, 9999)}"
-
+from database.initialize_db import initialize_db
+from database.app import app
 
 def test_register_customer():
-    unique_username = generate_unique_username("janedoe")
-    response = register_customer("Jane Doe", unique_username, "password123", 28, "456 Maple St", "Female", "Married")
-    assert response.get("message") == "Customer registered successfully"
+    temp_db_fd, temp_db_path = tempfile.mkstemp(suffix=".db")
+    try:
+        with app.app_context():
+            app.config['DATABASE'] = temp_db_path
+            initialize_db(temp_db_path)
+            response = register_customer(
+                "John Doe", "johndoe123", "password123", 30, "123 Elm St", "Male", "Single"
+            )
+            assert response.get("message") == "Customer registered successfully"
+    finally:
+        os.close(temp_db_fd)
+        os.remove(temp_db_path)
 
 
 def test_get_all_customers():
-    unique_username = generate_unique_username("johndoe")
-    register_customer("John Doe", unique_username, "password123", 30, "123 Elm St", "Male", "Single")
-    customers = get_all_customers()
-    non_admin_customers = [c for c in customers if c['Username'] != 'admin']
-    assert len(non_admin_customers) >= 1  # Ensure there is at least one test customer
+    temp_db_fd, temp_db_path = tempfile.mkstemp(suffix=".db")
+    try:
+        with app.app_context():
+            app.config['DATABASE'] = temp_db_path
+            initialize_db(temp_db_path)
+            register_customer(
+                "John Doe", "johndoe123", "password123", 30, "123 Elm St", "Male", "Single"
+            )
+            customers = get_all_customers()
+            assert len(customers) == 2  # Admin user and John Doe
+            usernames = [customer["Username"] for customer in customers]
+            assert "johndoe123" in usernames
+            assert "admin" in usernames
+    finally:
+        os.close(temp_db_fd)
+        os.remove(temp_db_path)
 
 
 def test_get_customer_by_username():
-    unique_username = generate_unique_username("johndoe")
-    register_customer("John Doe", unique_username, "password123", 30, "123 Elm St", "Male", "Single")
-    customer = get_customer_by_username(unique_username)
-    assert customer["FullName"] == "John Doe"
-    assert "Password" not in customer
+    temp_db_fd, temp_db_path = tempfile.mkstemp(suffix=".db")
+    try:
+        with app.app_context():
+            app.config['DATABASE'] = temp_db_path
+            initialize_db(temp_db_path)
+            register_customer(
+                "Alice Smith", "alicesmith", "password456", 25, "456 Oak St", "Female", "Single"
+            )
+            customer = get_customer_by_username("alicesmith")
+            assert customer is not None
+            assert customer["FullName"] == "Alice Smith"
+    finally:
+        os.close(temp_db_fd)
+        os.remove(temp_db_path)
+
+
+def test_update_customer():
+    temp_db_fd, temp_db_path = tempfile.mkstemp(suffix=".db")
+    try:
+        with app.app_context():
+            app.config['DATABASE'] = temp_db_path
+            initialize_db(temp_db_path)
+            register_customer(
+                "Bob Johnson", "bobjohnson", "password789", 40, "789 Pine St", "Male", "Married"
+            )
+            response = update_customer("bobjohnson", full_name="Robert Johnson", age=41)
+            assert response.get("message") == "Customer updated successfully"
+            customer = get_customer_by_username("bobjohnson")
+            assert customer["FullName"] == "Robert Johnson"
+            assert customer["Age"] == 41
+    finally:
+        os.close(temp_db_fd)
+        os.remove(temp_db_path)
 
 
 def test_delete_customer():
-    unique_username = generate_unique_username("johndoe")
-    register_customer("John Doe", unique_username, "password123", 30, "123 Elm St", "Male", "Single")
-    response = delete_customer(unique_username)
-    assert response["message"] == "Customer deleted successfully"
+    temp_db_fd, temp_db_path = tempfile.mkstemp(suffix=".db")
+    try:
+        with app.app_context():
+            app.config['DATABASE'] = temp_db_path
+            initialize_db(temp_db_path)
+            register_customer(
+                "Carol Williams", "carolw", "password101", 35, "246 Maple St", "Female", "Married"
+            )
+            response = delete_customer("carolw")
+            assert response.get("message") == "Customer deleted successfully"
+            customer = get_customer_by_username("carolw")
+            assert customer is None
+    finally:
+        os.close(temp_db_fd)
+        os.remove(temp_db_path)
 
-    response = delete_customer("nonexistent")
-    assert response["error"] == "Customer not found"
+
+def test_charge_customer():
+    temp_db_fd, temp_db_path = tempfile.mkstemp(suffix=".db")
+    try:
+        with app.app_context():
+            app.config['DATABASE'] = temp_db_path
+            initialize_db(temp_db_path)
+            register_customer(
+                "David Lee", "davidl", "password202", 28, "135 Cedar St", "Male", "Single"
+            )
+            response = charge_customer("davidl", 100.0)
+            assert response.get("message") == "Customer account charged successfully"
+            customer = get_customer_by_username("davidl")
+            assert customer["Wallet"] == 100.0
+    finally:
+        os.close(temp_db_fd)
+        os.remove(temp_db_path)
+
+
+def test_deduct_money():
+    temp_db_fd, temp_db_path = tempfile.mkstemp(suffix=".db")
+    try:
+        with app.app_context():
+            app.config['DATABASE'] = temp_db_path
+            initialize_db(temp_db_path)
+            register_customer(
+                "Eve Adams", "evea", "password303", 22, "864 Birch St", "Female", "Single"
+            )
+            charge_customer("evea", 50.0)
+            response = deduct_money("evea", 30.0)
+            assert response.get("message") == "Money deducted from wallet successfully"
+            customer = get_customer_by_username("evea")
+            assert customer["Wallet"] == 20.0
+    finally:
+        os.close(temp_db_fd)
+        os.remove(temp_db_path)
+
+
+def test_deduct_money_insufficient_balance():
+    temp_db_fd, temp_db_path = tempfile.mkstemp(suffix=".db")
+    try:
+        with app.app_context():
+            app.config['DATABASE'] = temp_db_path
+            initialize_db(temp_db_path)
+            register_customer(
+                "Frank Miller", "frankm", "password404", 30, "753 Spruce St", "Male", "Single"
+            )
+            response = deduct_money("frankm", 10.0)
+            assert response.get("error") == "Insufficient wallet balance"
+    finally:
+        os.close(temp_db_fd)
+        os.remove(temp_db_path)

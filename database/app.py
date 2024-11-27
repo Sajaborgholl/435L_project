@@ -12,6 +12,11 @@ from crud_customers import (
 
 app = Flask(__name__)
 
+@app.before_request
+def before_request():
+    # Ensure the app uses the correct database path
+    app.config['DATABASE'] = app.config.get('DATABASE', 'ecommerce.db')
+
 """
 Flask Application for Customer Database Service
 
@@ -63,7 +68,7 @@ def create_customer():
     )
     if response == "Username already taken":
         return jsonify({"error": response}), 409  # Conflict
-    return jsonify({"message": response}), 201  # Created
+    return jsonify(response), 201  # Created
 
 
 # Delete a Customer by Username
@@ -84,7 +89,7 @@ def remove_customer(username):
     if not customer:
         return jsonify({"error": "Customer not found"}), 404
     response = delete_customer(username)
-    return jsonify({"message": response}), 200
+    return jsonify(response), 200
 
 
 # Update Customer Information
@@ -111,7 +116,7 @@ def modify_customer(username):
         return jsonify({"error": "Customer not found"}), 404
 
     response = update_customer(username, **data)
-    return jsonify({"message": response}), 200
+    return jsonify(response), 200
 
 
 # Get All Customers
@@ -184,7 +189,7 @@ def add_money_to_wallet(username):
         return jsonify({"error": "Customer not found"}), 404
 
     response = charge_customer(username, amount)
-    return jsonify({"message": response}), 200
+    return jsonify(response), 200
 
 
 # Deduct Money from Wallet
@@ -223,7 +228,7 @@ def subtract_money_from_wallet(username):
         return jsonify({"error": "Insufficient funds"}), 400
 
     response = deduct_money(username, amount)
-    return jsonify({"message": response}), 200
+    return jsonify(response), 200
 
 
 if __name__ == '__main__':
