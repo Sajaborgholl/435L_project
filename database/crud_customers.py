@@ -4,6 +4,23 @@ from connect_db import get_db_connection
 
 # Register a new customer
 def register_customer(full_name, username, password, age, address, gender, marital_status):
+    """
+    Registers a new customer.
+
+    Args:
+        full_name (str): Full name of the customer.
+        username (str): Unique username for the customer.
+        password (str): Password for the customer.
+        age (int): Age of the customer.
+        address (str): Address of the customer.
+        gender (str): Gender of the customer.
+        marital_status (str): Marital status of the customer.
+
+    Returns:
+        dict: 
+            - "message" (str): Success message if registration is successful.
+            - "error" (str): Error message if the username already exists.
+    """
     conn = get_db_connection()
     cursor = conn.cursor()
     try:
@@ -21,6 +38,17 @@ def register_customer(full_name, username, password, age, address, gender, marit
 
 # Delete a customer by username
 def delete_customer(username):
+    """
+    Deletes a customer from the database by their username.
+
+    Args:
+        username (str): The username of the customer to delete.
+
+    Returns:
+        dict: A dictionary containing:
+            - "message" (str): Success message if deletion is successful.
+            - "error" (str): Error message if the customer does not exist.
+    """
     conn = get_db_connection()
     cursor = conn.cursor()
     customer = cursor.execute('SELECT * FROM Customers WHERE Username = ?', (username,)).fetchone()
@@ -36,6 +64,18 @@ def delete_customer(username):
 
 # Update customer information
 def update_customer(username, **kwargs):
+    """
+    Updates information for an existing customer.
+
+    Args:
+        username (str): The username of the customer to update.
+        **kwargs: Key-value pairs representing the fields to update.
+
+    Returns:
+        dict: A dictionary containing:
+            - "message" (str): Success message if the update is successful.
+            - "error" (str): Error message if the customer does not exist.
+    """
     conn = get_db_connection()
     cursor = conn.cursor()
     customer = cursor.execute('SELECT * FROM Customers WHERE Username = ?', (username,)).fetchone()
@@ -54,6 +94,21 @@ def update_customer(username, **kwargs):
 
 # Get all customers (exclude passwords)
 def get_all_customers():
+    """
+    Retrieves all customers from the database, excluding passwords.
+
+    Returns:
+        list: A list of dictionaries, each containing customer details:
+            - CustomerID
+            - FullName
+            - Username
+            - Age
+            - Address
+            - Gender
+            - MaritalStatus
+            - Wallet
+            - UserRole
+    """
     conn = get_db_connection()
     cursor = conn.cursor()
     customers = cursor.execute('SELECT CustomerID, FullName, Username, Age, Address, Gender, MaritalStatus, Wallet, UserRole FROM Customers').fetchall()
@@ -63,6 +118,15 @@ def get_all_customers():
 
 # Get a single customer by username (exclude password)
 def get_customer_by_username(username):
+    """
+    Retrieves a single customer's details by their username, excluding the password.
+
+    Args:
+        username (str): The username of the customer to retrieve.
+
+    Returns:
+        dict: A dictionary containing customer details or None if the customer does not exist.
+    """
     conn = get_db_connection()
     cursor = conn.cursor()
     customer = cursor.execute('SELECT CustomerID, FullName, Username, Age, Address, Gender, MaritalStatus, Wallet, UserRole FROM Customers WHERE Username = ?', (username,)).fetchone()
@@ -72,6 +136,18 @@ def get_customer_by_username(username):
 
 # Charge a customer's wallet
 def charge_customer(username, amount):
+    """
+    Charges a customer's wallet by adding a specified amount.
+
+    Args:
+        username (str): The username of the customer to charge.
+        amount (float): The amount to add to the wallet.
+
+    Returns:
+        dict: A dictionary containing:
+            - "message" (str): Success message if the wallet is charged successfully.
+            - "error" (str): Error message if the customer does not exist.
+    """
     conn = get_db_connection()
     cursor = conn.cursor()
     customer = cursor.execute('SELECT Wallet FROM Customers WHERE Username = ?', (username,)).fetchone()
@@ -87,6 +163,18 @@ def charge_customer(username, amount):
 
 # Deduct money from a customer's wallet
 def deduct_money(username, amount):
+    """
+    Deducts a specified amount from a customer's wallet.
+
+    Args:
+        username (str): The username of the customer.
+        amount (float): The amount to deduct from the wallet.
+
+    Returns:
+        dict: A dictionary containing:
+            - "message" (str): Success message if the amount is deducted successfully.
+            - "error" (str): Error message if the customer does not exist or if there are insufficient funds.
+    """
     conn = get_db_connection()
     cursor = conn.cursor()
     customer = cursor.execute('SELECT Wallet FROM Customers WHERE Username = ?', (username,)).fetchone()

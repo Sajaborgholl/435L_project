@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Database documentation &mdash; Database  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Database
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Database documentation</a></li>
+<li><a class="reference internal" href="#module-app">Modules</a><ul>
+<li><a class="reference internal" href="#app.add_money_to_wallet"><code class="docutils literal notranslate"><span class="pre">add_money_to_wallet()</span></code></a></li>
+<li><a class="reference internal" href="#app.app"><code class="docutils literal notranslate"><span class="pre">app</span></code></a></li>
+<li><a class="reference internal" href="#app.create_customer"><code class="docutils literal notranslate"><span class="pre">create_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_all_customers"><code class="docutils literal notranslate"><span class="pre">fetch_all_customers()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_customer"><code class="docutils literal notranslate"><span class="pre">fetch_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.modify_customer"><code class="docutils literal notranslate"><span class="pre">modify_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.remove_customer"><code class="docutils literal notranslate"><span class="pre">remove_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.subtract_money_from_wallet"><code class="docutils literal notranslate"><span class="pre">subtract_money_from_wallet()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.charge_customer"><code class="docutils literal notranslate"><span class="pre">charge_customer()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.deduct_money"><code class="docutils literal notranslate"><span class="pre">deduct_money()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.delete_customer"><code class="docutils literal notranslate"><span class="pre">delete_customer()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.get_all_customers"><code class="docutils literal notranslate"><span class="pre">get_all_customers()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.get_customer_by_username"><code class="docutils literal notranslate"><span class="pre">get_customer_by_username()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.register_customer"><code class="docutils literal notranslate"><span class="pre">register_customer()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.update_customer"><code class="docutils literal notranslate"><span class="pre">update_customer()</span></code></a></li>
+<li><a class="reference internal" href="#connect_db.get_db_connection"><code class="docutils literal notranslate"><span class="pre">get_db_connection()</span></code></a></li>
+<li><a class="reference internal" href="#initialize_db.initialize_db"><code class="docutils literal notranslate"><span class="pre">initialize_db()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Database</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Database documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="database-documentation">
+<h1>Database documentation<a class="headerlink" href="#database-documentation" title="Link to this heading"></a></h1>
+<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
+documentation for details.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="module-app">
+<span id="modules"></span><h1>Modules<a class="headerlink" href="#module-app" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.add_money_to_wallet">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">add_money_to_wallet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.add_money_to_wallet" title="Link to this definition"></a></dt>
+<dd><p>Charge a Customer’s Wallet</p>
+<p>Adds a specified amount of money to a customer’s wallet.</p>
+<dl>
+<dt>Args:</dt><dd><p>username (str): The username of the customer to charge.</p>
+</dd>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“amount”: 50.0</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Response (JSON): </dt><dd><ul class="simple">
+<li><p>A success message with status code 200, or</p></li>
+<li><p>An error message with status code 400/404.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="app.app">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">app</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Flask</span> <span class="pre">'app'&gt;</span></em><a class="headerlink" href="#app.app" title="Link to this definition"></a></dt>
+<dd><p>Flask Application for Customer Database Service</p>
+<p>This module defines RESTful API endpoints for managing customers in the database.
+It provides functionality for registering customers, updating their information,
+retrieving customer details, and managing wallet balances.</p>
+<dl class="simple">
+<dt>Endpoints:</dt><dd><ul class="simple">
+<li><p>POST /db/customers: Register a new customer.</p></li>
+<li><p>DELETE /db/customers/&lt;username&gt;: Delete a customer by username.</p></li>
+<li><p>PUT /db/customers/&lt;username&gt;: Update customer information.</p></li>
+<li><p>GET /db/customers: Retrieve all customers.</p></li>
+<li><p>GET /db/customers/&lt;username&gt;: Retrieve a single customer by username.</p></li>
+<li><p>POST /db/customers/&lt;username&gt;/charge: Add money to a customer’s wallet.</p></li>
+<li><p>POST /db/customers/&lt;username&gt;/deduct: Deduct money from a customer’s wallet.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.create_customer">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">create_customer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.create_customer" title="Link to this definition"></a></dt>
+<dd><p>Register a New Customer</p>
+<p>Accepts a JSON payload with customer details and registers the customer in the database.</p>
+<dl>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“full_name”: “John Doe”,
+“username”: “johndoe”,
+“password”: “password123”,
+“age”: 30,
+“address”: “123 Elm St”,
+“gender”: “Male”,
+“marital_status”: “Single”</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Response (JSON): </dt><dd><ul class="simple">
+<li><p>A success message with status code 201, or</p></li>
+<li><p>An error message with status code 400/409.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_all_customers">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_all_customers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_all_customers" title="Link to this definition"></a></dt>
+<dd><p>Retrieve All Customers</p>
+<p>Retrieves a list of all customers in the database, excluding sensitive information like passwords.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Response (JSON): A list of customers with status code 200.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_customer">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_customer" title="Link to this definition"></a></dt>
+<dd><p>Retrieve a Single Customer by Username</p>
+<p>Retrieves a specific customer’s details by their username, excluding sensitive information.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to retrieve.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response (JSON): The customer’s details with status code 200 or an error message with status code 404.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.modify_customer">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">modify_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.modify_customer" title="Link to this definition"></a></dt>
+<dd><p>Updates information for an existing customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to update.
+<a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs: Key-value pairs representing the fields to update.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>dict: </dt><dd><ul class="simple">
+<li><p>“message” (str): Success message if the update is successful.</p></li>
+<li><p>“error” (str): Error message if the customer does not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.remove_customer">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">remove_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.remove_customer" title="Link to this definition"></a></dt>
+<dd><p>Delete a Customer by Username</p>
+<p>Deletes a customer from the database using their username.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to delete.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response (JSON): A success message with status code 200 or an error message with status code 404.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.subtract_money_from_wallet">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">subtract_money_from_wallet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.subtract_money_from_wallet" title="Link to this definition"></a></dt>
+<dd><p>Deduct Money from a Customer’s Wallet</p>
+<p>Deducts a specified amount of money from a customer’s wallet if sufficient funds are available.</p>
+<dl>
+<dt>Args:</dt><dd><p>username (str): The username of the customer to deduct money from.</p>
+</dd>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“amount”: 20.0</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response (JSON): A success message with status code 200 or an error message with status code 400/404.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-crud_customers">
+<dt class="sig sig-object py" id="crud_customers.charge_customer">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">charge_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.charge_customer" title="Link to this definition"></a></dt>
+<dd><p>Charges a customer’s wallet by adding a specified amount.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to charge.
+amount (float): The amount to add to the wallet.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>dict: A dictionary containing:</dt><dd><ul class="simple">
+<li><p>“message” (str): Success message if the wallet is charged successfully.</p></li>
+<li><p>“error” (str): Error message if the customer does not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.deduct_money">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">deduct_money</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.deduct_money" title="Link to this definition"></a></dt>
+<dd><p>Deducts a specified amount from a customer’s wallet.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer.
+amount (float): The amount to deduct from the wallet.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>dict: A dictionary containing:</dt><dd><ul class="simple">
+<li><p>“message” (str): Success message if the amount is deducted successfully.</p></li>
+<li><p>“error” (str): Error message if the customer does not exist or if there are insufficient funds.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.delete_customer">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">delete_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.delete_customer" title="Link to this definition"></a></dt>
+<dd><p>Deletes a customer from the database by their username.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to delete.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>dict: A dictionary containing:</dt><dd><ul class="simple">
+<li><p>“message” (str): Success message if deletion is successful.</p></li>
+<li><p>“error” (str): Error message if the customer does not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.get_all_customers">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">get_all_customers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.get_all_customers" title="Link to this definition"></a></dt>
+<dd><p>Retrieves all customers from the database, excluding passwords.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>list: A list of dictionaries, each containing customer details:</dt><dd><ul class="simple">
+<li><p>CustomerID</p></li>
+<li><p>FullName</p></li>
+<li><p>Username</p></li>
+<li><p>Age</p></li>
+<li><p>Address</p></li>
+<li><p>Gender</p></li>
+<li><p>MaritalStatus</p></li>
+<li><p>Wallet</p></li>
+<li><p>UserRole</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.get_customer_by_username">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">get_customer_by_username</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.get_customer_by_username" title="Link to this definition"></a></dt>
+<dd><p>Retrieves a single customer’s details by their username, excluding the password.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to retrieve.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary containing customer details or None if the customer does not exist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.register_customer">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">register_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marital_status</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.register_customer" title="Link to this definition"></a></dt>
+<dd><p>Registers a new customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>full_name (str): Full name of the customer.
+username (str): Unique username for the customer.
+password (str): Password for the customer.
+age (int): Age of the customer.
+address (str): Address of the customer.
+gender (str): Gender of the customer.
+marital_status (str): Marital status of the customer.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>dict: </dt><dd><ul class="simple">
+<li><p>“message” (str): Success message if registration is successful.</p></li>
+<li><p>“error” (str): Error message if the username already exists.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.update_customer">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">update_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.update_customer" title="Link to this definition"></a></dt>
+<dd><p>Updates information for an existing customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to update.
+<a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs: Key-value pairs representing the fields to update.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>dict: A dictionary containing:</dt><dd><ul class="simple">
+<li><p>“message” (str): Success message if the update is successful.</p></li>
+<li><p>“error” (str): Error message if the customer does not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-connect_db">
+<dt class="sig sig-object py" id="connect_db.get_db_connection">
+<span class="sig-prename descclassname"><span class="pre">connect_db.</span></span><span class="sig-name descname"><span class="pre">get_db_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#connect_db.get_db_connection" title="Link to this definition"></a></dt>
+<dd><p>Establishes a connection to the SQLite database ‘ecommerce.db’ and sets the row factory to sqlite3.Row.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>sqlite3.Connection: A connection object to the ‘ecommerce.db’ database.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-initialize_db">
+<dt class="sig sig-object py" id="initialize_db.initialize_db">
+<span class="sig-prename descclassname"><span class="pre">initialize_db.</span></span><span class="sig-name descname"><span class="pre">initialize_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#initialize_db.initialize_db" title="Link to this definition"></a></dt>
+<dd><p>Initialize the database by creating tables and inserting initial data.</p>
+<dl class="simple">
+<dt>Steps:</dt><dd><ol class="arabic simple">
+<li><p>Connect to the SQLite database ‘ecommerce.db’.</p></li>
+<li><p>Execute the SQL schema from ‘schema.sql’ to create necessary tables.</p></li>
+<li><p>Insert an initial admin user into the Customers table with the following attributes:
+- FullName: ‘Admin User’
+- Username: ‘admin’
+- Password: Hashed password of ‘admin_password’
+- Age: 30
+- Address: ‘123 Admin St’
+- Gender: ‘Male’
+- MaritalStatus: ‘Single’
+- Wallet: 0
+- UserRole: 1 (indicating admin role)</p></li>
+<li><p>Commit the changes and close the database connection.</p></li>
+</ol>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Ahmad Dimashkie, Saja Borghol.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
