@@ -28,6 +28,11 @@ Modules
    :undoc-members:
    :show-inheritance:
 
+.. automodule:: crud_inventory
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 .. automodule:: connect_db
    :members:
    :undoc-members:

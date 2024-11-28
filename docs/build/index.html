@@ -45,12 +45,17 @@
 <li><a class="reference internal" href="#">Database documentation</a></li>
 <li><a class="reference internal" href="#module-app">Modules</a><ul>
 <li><a class="reference internal" href="#app.add_money_to_wallet"><code class="docutils literal notranslate"><span class="pre">add_money_to_wallet()</span></code></a></li>
-<li><a class="reference internal" href="#app.app"><code class="docutils literal notranslate"><span class="pre">app</span></code></a></li>
+<li><a class="reference internal" href="#app.before_request"><code class="docutils literal notranslate"><span class="pre">before_request()</span></code></a></li>
 <li><a class="reference internal" href="#app.create_customer"><code class="docutils literal notranslate"><span class="pre">create_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.create_item"><code class="docutils literal notranslate"><span class="pre">create_item()</span></code></a></li>
+<li><a class="reference internal" href="#app.deduct_stock_from_item"><code class="docutils literal notranslate"><span class="pre">deduct_stock_from_item()</span></code></a></li>
 <li><a class="reference internal" href="#app.fetch_all_customers"><code class="docutils literal notranslate"><span class="pre">fetch_all_customers()</span></code></a></li>
 <li><a class="reference internal" href="#app.fetch_customer"><code class="docutils literal notranslate"><span class="pre">fetch_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_inventory"><code class="docutils literal notranslate"><span class="pre">fetch_inventory()</span></code></a></li>
 <li><a class="reference internal" href="#app.modify_customer"><code class="docutils literal notranslate"><span class="pre">modify_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.modify_item"><code class="docutils literal notranslate"><span class="pre">modify_item()</span></code></a></li>
 <li><a class="reference internal" href="#app.remove_customer"><code class="docutils literal notranslate"><span class="pre">remove_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.remove_item"><code class="docutils literal notranslate"><span class="pre">remove_item()</span></code></a></li>
 <li><a class="reference internal" href="#app.subtract_money_from_wallet"><code class="docutils literal notranslate"><span class="pre">subtract_money_from_wallet()</span></code></a></li>
 <li><a class="reference internal" href="#crud_customers.charge_customer"><code class="docutils literal notranslate"><span class="pre">charge_customer()</span></code></a></li>
 <li><a class="reference internal" href="#crud_customers.deduct_money"><code class="docutils literal notranslate"><span class="pre">deduct_money()</span></code></a></li>
@@ -59,6 +64,11 @@
 <li><a class="reference internal" href="#crud_customers.get_customer_by_username"><code class="docutils literal notranslate"><span class="pre">get_customer_by_username()</span></code></a></li>
 <li><a class="reference internal" href="#crud_customers.register_customer"><code class="docutils literal notranslate"><span class="pre">register_customer()</span></code></a></li>
 <li><a class="reference internal" href="#crud_customers.update_customer"><code class="docutils literal notranslate"><span class="pre">update_customer()</span></code></a></li>
+<li><a class="reference internal" href="#crud_inventory.add_item"><code class="docutils literal notranslate"><span class="pre">add_item()</span></code></a></li>
+<li><a class="reference internal" href="#crud_inventory.deduct_item"><code class="docutils literal notranslate"><span class="pre">deduct_item()</span></code></a></li>
+<li><a class="reference internal" href="#crud_inventory.delete_item"><code class="docutils literal notranslate"><span class="pre">delete_item()</span></code></a></li>
+<li><a class="reference internal" href="#crud_inventory.get_all_items"><code class="docutils literal notranslate"><span class="pre">get_all_items()</span></code></a></li>
+<li><a class="reference internal" href="#crud_inventory.update_item"><code class="docutils literal notranslate"><span class="pre">update_item()</span></code></a></li>
 <li><a class="reference internal" href="#connect_db.get_db_connection"><code class="docutils literal notranslate"><span class="pre">get_db_connection()</span></code></a></li>
 <li><a class="reference internal" href="#initialize_db.initialize_db"><code class="docutils literal notranslate"><span class="pre">initialize_db()</span></code></a></li>
 </ul>
@@ -124,26 +134,10 @@ documentation for details.</p>
 </dl>
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py" id="app.app">
-<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">app</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Flask</span> <span class="pre">'app'&gt;</span></em><a class="headerlink" href="#app.app" title="Link to this definition"></a></dt>
-<dd><p>Flask Application for Customer Database Service</p>
-<p>This module defines RESTful API endpoints for managing customers in the database.
-It provides functionality for registering customers, updating their information,
-retrieving customer details, and managing wallet balances.</p>
-<dl class="simple">
-<dt>Endpoints:</dt><dd><ul class="simple">
-<li><p>POST /db/customers: Register a new customer.</p></li>
-<li><p>DELETE /db/customers/&lt;username&gt;: Delete a customer by username.</p></li>
-<li><p>PUT /db/customers/&lt;username&gt;: Update customer information.</p></li>
-<li><p>GET /db/customers: Retrieve all customers.</p></li>
-<li><p>GET /db/customers/&lt;username&gt;: Retrieve a single customer by username.</p></li>
-<li><p>POST /db/customers/&lt;username&gt;/charge: Add money to a customer’s wallet.</p></li>
-<li><p>POST /db/customers/&lt;username&gt;/deduct: Deduct money from a customer’s wallet.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.before_request">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">before_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.before_request" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="app.create_customer">
@@ -175,6 +169,40 @@ retrieving customer details, and managing wallet balances.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="app.create_item">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">create_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.create_item" title="Link to this definition"></a></dt>
+<dd><p>Create a new inventory item.</p>
+<dl class="simple">
+<dt>Accepts a JSON payload with the following fields:</dt><dd><ul class="simple">
+<li><p>name (str): The name of the item.</p></li>
+<li><p>category (str): The category of the item (e.g., food, clothes, accessories, electronics).</p></li>
+<li><p>price (float): The price per item.</p></li>
+<li><p>description (str): A brief description of the item.</p></li>
+<li><p>stock (int): The count of available items in stock.</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object indicating success or failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.deduct_stock_from_item">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">deduct_stock_from_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.deduct_stock_from_item" title="Link to this definition"></a></dt>
+<dd><p>Deduct stock for a specific item in the inventory.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to deduct stock from.</p>
+</dd>
+<dt>Accepts a JSON payload with the field:</dt><dd><ul class="simple">
+<li><p>count (int): The number of items to deduct.</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object indicating success or failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="app.fetch_all_customers">
 <span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_all_customers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_all_customers" title="Link to this definition"></a></dt>
 <dd><p>Retrieve All Customers</p>
@@ -199,6 +227,16 @@ retrieving customer details, and managing wallet balances.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_inventory">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_inventory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_inventory" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all inventory items.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Response: JSON object with a list of inventory items.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="app.modify_customer">
 <span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">modify_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.modify_customer" title="Link to this definition"></a></dt>
 <dd><p>Updates information for an existing customer.</p>
@@ -218,6 +256,21 @@ retrieving customer details, and managing wallet balances.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="app.modify_item">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">modify_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.modify_item" title="Link to this definition"></a></dt>
+<dd><p>Update fields for a specific inventory item.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to update.</p>
+</dd>
+</dl>
+<p>Accepts a JSON payload with key-value pairs for the fields to update.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Response: JSON object indicating success or failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="app.remove_customer">
 <span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">remove_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.remove_customer" title="Link to this definition"></a></dt>
 <dd><p>Delete a Customer by Username</p>
@@ -226,6 +279,18 @@ retrieving customer details, and managing wallet balances.</p>
 <dt>Args:</dt><dd><p>username (str): The username of the customer to delete.</p>
 </dd>
 <dt>Returns:</dt><dd><p>Response (JSON): A success message with status code 200 or an error message with status code 404.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.remove_item">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">remove_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.remove_item" title="Link to this definition"></a></dt>
+<dd><p>Delete an inventory item by ID.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to delete.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object indicating success or failure.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -372,13 +437,71 @@ marital_status (str): Marital status of the customer.</p>
 <dt>Args:</dt><dd><p>username (str): The username of the customer to update.
 <a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs: Key-value pairs representing the fields to update.</p>
 </dd>
-<dt>Returns:</dt><dd><dl class="simple">
-<dt>dict: A dictionary containing:</dt><dd><ul class="simple">
-<li><p>“message” (str): Success message if the update is successful.</p></li>
-<li><p>“error” (str): Error message if the customer does not exist.</p></li>
-</ul>
+<dt>Returns:</dt><dd><p>dict: A dictionary containing a success message or an error message.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function" id="module-crud_inventory">
+<dt class="sig sig-object py" id="crud_inventory.add_item">
+<span class="sig-prename descclassname"><span class="pre">crud_inventory.</span></span><span class="sig-name descname"><span class="pre">add_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stock</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_inventory.add_item" title="Link to this definition"></a></dt>
+<dd><p>Add a new item to the inventory, or update stock if item with same name and price exists.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): The name of the item.
+category (str): The category of the item (e.g., food, clothes, accessories, electronics).
+price (float): The price of a single item.
+description (str): A brief description of the item.
+stock (int): The number of items available in stock.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary with a success message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_inventory.deduct_item">
+<span class="sig-prename descclassname"><span class="pre">crud_inventory.</span></span><span class="sig-name descname"><span class="pre">deduct_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_inventory.deduct_item" title="Link to this definition"></a></dt>
+<dd><p>Deduct stock for a specific item in the inventory.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to be deducted.
+count (int): The number of items to deduct from stock.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary with a success message or an error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_inventory.delete_item">
+<span class="sig-prename descclassname"><span class="pre">crud_inventory.</span></span><span class="sig-name descname"><span class="pre">delete_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_inventory.delete_item" title="Link to this definition"></a></dt>
+<dd><p>Delete a specific item from the inventory.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to delete.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary with a success message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_inventory.get_all_items">
+<span class="sig-prename descclassname"><span class="pre">crud_inventory.</span></span><span class="sig-name descname"><span class="pre">get_all_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#crud_inventory.get_all_items" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all items from the inventory.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list: A list of dictionaries containing item details.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_inventory.update_item">
+<span class="sig-prename descclassname"><span class="pre">crud_inventory.</span></span><span class="sig-name descname"><span class="pre">update_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fields</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_inventory.update_item" title="Link to this definition"></a></dt>
+<dd><p>Update the details of a specific item in the inventory.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to update.
+<a href="#id5"><span class="problematic" id="id6">**</span></a>fields: Key-value pairs of fields to update (e.g., name=’new name’, price=99.99).</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary with a success message.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -386,16 +509,13 @@ marital_status (str): Marital status of the customer.</p>
 <dl class="py function" id="module-connect_db">
 <dt class="sig sig-object py" id="connect_db.get_db_connection">
 <span class="sig-prename descclassname"><span class="pre">connect_db.</span></span><span class="sig-name descname"><span class="pre">get_db_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#connect_db.get_db_connection" title="Link to this definition"></a></dt>
-<dd><p>Establishes a connection to the SQLite database ‘ecommerce.db’ and sets the row factory to sqlite3.Row.</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>sqlite3.Connection: A connection object to the ‘ecommerce.db’ database.</p>
-</dd>
-</dl>
+<dd><p>Get a connection to the database.
+Uses the database path from Flask’s app config.</p>
 </dd></dl>
 
 <dl class="py function" id="module-initialize_db">
 <dt class="sig sig-object py" id="initialize_db.initialize_db">
-<span class="sig-prename descclassname"><span class="pre">initialize_db.</span></span><span class="sig-name descname"><span class="pre">initialize_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#initialize_db.initialize_db" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">initialize_db.</span></span><span class="sig-name descname"><span class="pre">initialize_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ecommerce.db'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#initialize_db.initialize_db" title="Link to this definition"></a></dt>
 <dd><p>Initialize the database by creating tables and inserting initial data.</p>
 <dl class="simple">
 <dt>Steps:</dt><dd><ol class="arabic simple">

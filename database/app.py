@@ -9,6 +9,7 @@ from crud_customers import (
     charge_customer,
     deduct_money
 )
+from crud_inventory import add_item, deduct_item, update_item, get_all_items, delete_item
 
 app = Flask(__name__)
 
@@ -230,6 +231,99 @@ def subtract_money_from_wallet(username):
     response = deduct_money(username, amount)
     return jsonify(response), 200
 
+
+###############################################Inventory#####################################################
+
+@app.route('/db/inventory', methods=['GET'])
+def fetch_inventory():
+    """
+    Retrieve all inventory items.
+
+    Returns:
+        Response: JSON object with a list of inventory items.
+    """
+    items = get_all_items()
+    return jsonify(items), 200
+
+@app.route('/db/inventory', methods=['POST'])
+def create_item():
+    """
+    Create a new inventory item.
+
+    Accepts a JSON payload with the following fields:
+        - name (str): The name of the item.
+        - category (str): The category of the item (e.g., food, clothes, accessories, electronics).
+        - price (float): The price per item.
+        - description (str): A brief description of the item.
+        - stock (int): The count of available items in stock.
+
+    Returns:
+        Response: JSON object indicating success or failure.
+    """
+    data = request.get_json()
+    required_fields = ['name', 'category', 'price', 'description', 'stock']
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": "Missing required fields"}), 400
+
+    response = add_item(data['name'], data['category'], data['price'], data['description'], data['stock'])
+    return jsonify(response), 201
+
+@app.route('/db/inventory/<int:item_id>', methods=['PUT'])
+def modify_item(item_id):
+    """
+    Update fields for a specific inventory item.
+
+    Args:
+        item_id (int): The ID of the item to update.
+
+    Accepts a JSON payload with key-value pairs for the fields to update.
+
+    Returns:
+        Response: JSON object indicating success or failure.
+    """
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+
+    response = update_item(item_id, **data)
+    return jsonify(response), 200
+
+@app.route('/db/inventory/<int:item_id>/deduct', methods=['POST'])
+def deduct_stock_from_item(item_id):
+    """
+    Deduct stock for a specific item in the inventory.
+
+    Args:
+        item_id (int): The ID of the item to deduct stock from.
+
+    Accepts a JSON payload with the field:
+        - count (int): The number of items to deduct.
+
+    Returns:
+        Response: JSON object indicating success or failure.
+    """
+    data = request.get_json()
+    if 'count' not in data:
+        return jsonify({"error": "Missing 'count' field"}), 400
+
+    response = deduct_item(item_id, data['count'])
+    if 'error' in response:
+        return jsonify(response), 400
+    return jsonify(response), 200
+
+@app.route('/db/inventory/<int:item_id>', methods=['DELETE'])
+def remove_item(item_id):
+    """
+    Delete an inventory item by ID.
+
+    Args:
+        item_id (int): The ID of the item to delete.
+
+    Returns:
+        Response: JSON object indicating success or failure.
+    """
+    response = delete_item(item_id)
+    return jsonify(response), 200
 
 if __name__ == '__main__':
     initialize_db()
