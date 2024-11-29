@@ -33,6 +33,11 @@ Modules
    :undoc-members:
    :show-inheritance:
 
+.. automodule:: crud_sales
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
 .. automodule:: connect_db
    :members:
    :undoc-members:

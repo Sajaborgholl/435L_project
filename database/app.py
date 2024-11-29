@@ -11,6 +11,8 @@ from crud_customers import (
 )
 from crud_inventory import add_item, deduct_item, update_item, get_all_items, delete_item
 
+from crud_sales import record_sale, fetch_sales, get_goods, get_specific_goods, get_customer_purchases, add_to_wishlist, fetch_wishlist
+
 app = Flask(__name__)
 
 @app.before_request
@@ -324,6 +326,128 @@ def remove_item(item_id):
     """
     response = delete_item(item_id)
     return jsonify(response), 200
+
+
+############################################################Sales####################################################
+
+@app.route('/db/sales', methods=['POST'])
+def create_sale():
+    """
+    Create a new sale record.
+
+    Expects:
+        JSON payload with 'customer_username', 'product_id', and 'quantity'.
+
+    Returns:
+        Response: JSON object indicating success or failure message.
+    """
+    data = request.get_json()
+    customer_id = data.get('customer_username')
+    product_id = data.get('product_id')
+    quantity = data.get('quantity')
+
+    if not all([customer_id, product_id, quantity]):
+        return jsonify({"error": "Missing fields"}), 400
+
+    response = record_sale(customer_id, product_id, quantity)
+    if "error" in response:
+        return jsonify(response), 400
+
+    return jsonify(response), 201
+
+# Fetch all sales
+@app.route('/db/sales', methods=['GET'])
+def get_sales():
+    """
+    Retrieve all sales records.
+
+    Returns:
+        Response: JSON object containing a list of sales.
+    """
+    sales = fetch_sales()
+    return jsonify(sales), 200
+
+# Update a sale
+@app.route('/db/sales/goods', methods=['GET'])
+def get_goods_sales():
+    """
+    Retrieve available goods for sale.
+
+    Returns:
+        Response: JSON object containing a list of goods, including their names and prices.
+    """
+    goods = get_goods()
+    return jsonify(goods), 200
+
+@app.route('/db/sales/good/<int:product_id>', methods=['GET'])
+def get_specific_good(product_id):
+    """
+    Retrieve full details of a specific good.
+
+    Args:
+        product_id (int): The ID of the product to retrieve.
+
+    Returns:
+        Response: JSON object containing detailed information about the product,
+                  or an error message if the product is not found.
+    """
+    product = get_specific_goods(product_id)
+    if not product:
+        return jsonify({"error": "Product not found"}), 404
+    return jsonify(product), 200
+
+@app.route('/db/sales/customer/<username>', methods=['GET'])
+def get_purchases(username):
+    """
+    Retrieve all historical purchases of a specific customer.
+
+    Args:
+        username (str): The username of the customer.
+
+    Returns:
+        Response: JSON object containing a list of purchases made by the customer.
+    """
+    purchases = get_customer_purchases(username)
+    return jsonify(purchases), 200
+
+@app.route('/db/sales/wishlist/<username>', methods=['POST'])
+def add_to_user_wishlist(username):
+    """
+    Add a product to the customer's wishlist.
+
+    Args:
+        username (str): The username of the customer.
+
+    Request Body:
+        {
+            "product_id": int  # The ID of the product to add to the wishlist.
+        }
+
+    Returns:
+        Response: JSON object indicating success or failure.
+    """
+    data = request.get_json()
+    product_id = data.get('product_id')
+
+    if not product_id:
+        return jsonify({"error": "Product ID is required"}), 400
+
+    response = add_to_wishlist(username, product_id)
+    return jsonify(response), 200
+
+@app.route('/db/sales/wishlist/<username>', methods=['GET'])
+def get_user_wishlist(username):
+    """
+    Retrieve the wishlist of a specific customer.
+
+    Args:
+        username (str): The username of the customer.
+
+    Returns:
+        Response: JSON object containing a list of products in the customer's wishlist.
+    """
+    wishlist = fetch_wishlist(username)
+    return jsonify(wishlist), 200
 
 if __name__ == '__main__':
     initialize_db()

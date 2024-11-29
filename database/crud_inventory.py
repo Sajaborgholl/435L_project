@@ -16,6 +16,25 @@ def get_all_items():
     item_list = [dict(item) for item in items]
     return item_list
 
+def get_product_by_id(item_id):
+    """
+    Retrieve a specific item from the inventory by its ID.
+
+    Args:
+        item_id (int): The ID of the item to retrieve.
+
+    Returns:
+        dict: A dictionary containing the item details.
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM Inventory WHERE ProductID = ?', (item_id,))
+    item = cursor.fetchone()
+    conn.close()
+    if item:
+        return dict(item)
+    return None
+
 def add_item(name, category, price, description, stock):
     """
     Add a new item to the inventory, or update stock if item with same name and price exists.

@@ -25,25 +25,25 @@ CREATE TABLE IF NOT EXISTS Inventory (
 
 -- Sales Table
 CREATE TABLE IF NOT EXISTS Sales (
-    SaleID INTEGER PRIMARY KEY,
-    CustomerID INTEGER,
+    SaleID INTEGER PRIMARY KEY AUTOINCREMENT,
+    CustomerUsername TEXT NOT NULL,
     ProductID INTEGER,
     Quantity INTEGER NOT NULL,
-    TotalAmount REAL NOT NULL, -- Represents the total cost of the sale
-    SaleDate TEXT NOT NULL, -- ISO format (YYYY-MM-DD)
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    TotalPrice REAL NOT NULL, 
+    SaleDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    FOREIGN KEY (CustomerUsername) REFERENCES Customers(CustomerUsername),
     FOREIGN KEY (ProductID) REFERENCES Inventory(ProductID)
 );
 
 -- Historical Purchases Table
 CREATE TABLE IF NOT EXISTS HistoricalPurchases (
-    PurchaseID INTEGER PRIMARY KEY,
-    CustomerID INTEGER,
-    ProductID INTEGER,
-    Quantity INTEGER NOT NULL,
-    PurchaseDate TEXT NOT NULL, -- ISO format (YYYY-MM-DD)
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
-    FOREIGN KEY (ProductID) REFERENCES Inventory(ProductID)
+    CustomerUsername TEXT PRIMARY KEY,
+    PurchaseHistory TEXT -- Stores all purchases as a JSON string
+);
+CREATE TABLE IF NOT EXISTS Wishlist (
+    CustomerUsername TEXT PRIMARY KEY,
+    List TEXT, -- Stores the list of product IDs as a JSON string
+    FOREIGN KEY (CustomerUsername) REFERENCES Customers(Username)
 );
 
 -- Reviews Table
