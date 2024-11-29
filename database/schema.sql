@@ -46,17 +46,16 @@ CREATE TABLE IF NOT EXISTS Wishlist (
     FOREIGN KEY (CustomerUsername) REFERENCES Customers(Username)
 );
 
--- Reviews Table
 CREATE TABLE IF NOT EXISTS Reviews (
-    ReviewID INTEGER PRIMARY KEY,
-    CustomerID INTEGER,
-    ProductID INTEGER,
-    Rating INTEGER CHECK(Rating BETWEEN 1 AND 5),
+    ReviewID INTEGER PRIMARY KEY AUTOINCREMENT,
+    ProductID INTEGER NOT NULL,
+    CustomerUsername TEXT NOT NULL,
+    Rating INTEGER NOT NULL CHECK (Rating BETWEEN 1 AND 5),
     Comment TEXT,
-    ReviewDate TEXT NOT NULL, -- ISO format (YYYY-MM-DD)
-    Moderated INTEGER DEFAULT 0, -- 0 for unmoderated, 1 for moderated
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
-    FOREIGN KEY (ProductID) REFERENCES Inventory(ProductID)
+    Status TEXT DEFAULT 'Pending', -- 'Pending', 'Approved', 'Flagged'
+    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ProductID) REFERENCES Inventory(ProductID),
+    FOREIGN KEY (CustomerUsername) REFERENCES Customers(Username)
 );
 
 -- API Logs Table (Optional for Tracking API Requests)

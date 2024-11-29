@@ -1,6 +1,6 @@
 import sqlite3
 from connect_db import get_db_connection
-
+from werkzeug.security import generate_password_hash
 
 # Register a new customer
 def register_customer(full_name, username, password, age, address, gender, marital_status):
@@ -27,7 +27,7 @@ def register_customer(full_name, username, password, age, address, gender, marit
         cursor.execute('''
             INSERT INTO Customers (FullName, Username, Password, Age, Address, Gender, MaritalStatus, Wallet, UserRole)
             VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)
-        ''', (full_name, username, password, age, address, gender, marital_status))
+        ''', (full_name, username, generate_password_hash(password), age, address, gender, marital_status))
         conn.commit()
         return {"message": "Customer registered successfully"}
     except sqlite3.IntegrityError:
@@ -149,7 +149,7 @@ def get_customer_by_username(username):
     """
     conn = get_db_connection()
     cursor = conn.cursor()
-    customer = cursor.execute('SELECT CustomerID, FullName, Username, Age, Address, Gender, MaritalStatus, Wallet, UserRole FROM Customers WHERE Username = ?', (username,)).fetchone()
+    customer = cursor.execute('SELECT CustomerID, FullName, Username, Password, Age, Address, Gender, MaritalStatus, Wallet, UserRole FROM Customers WHERE Username = ?', (username,)).fetchone()
     conn.close()
     return dict(customer) if customer else None
 

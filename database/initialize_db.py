@@ -29,7 +29,7 @@ def initialize_db(db_path='ecommerce.db'):
         sql_script = sql_file.read()
     cursor.executescript(sql_script)
 
-    admin_user = ('Admin User', 'admin', 'admin_password', 30, '123 Admin St', 'Male', 'Single', 0, 1)
+    admin_user = ('Admin User', 'admin', generate_password_hash('admin_password'), 30, '123 Admin St', 'Male', 'Single', 0, 1)
     cursor.execute('''
         INSERT OR IGNORE INTO Customers 
         (FullName, Username, Password, Age, Address, Gender, MaritalStatus, Wallet, UserRole)

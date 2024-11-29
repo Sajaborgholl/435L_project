@@ -37,13 +37,23 @@ Modules
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
+.. automodule:: crud_reviews
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 .. automodule:: connect_db
    :members:
    :undoc-members:
    :show-inheritance:
 
 .. automodule:: initialize_db
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: utils
    :members:
    :undoc-members:
    :show-inheritance:

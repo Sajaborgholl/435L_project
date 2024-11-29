@@ -49,20 +49,28 @@
 <li><a class="reference internal" href="#app.before_request"><code class="docutils literal notranslate"><span class="pre">before_request()</span></code></a></li>
 <li><a class="reference internal" href="#app.create_customer"><code class="docutils literal notranslate"><span class="pre">create_customer()</span></code></a></li>
 <li><a class="reference internal" href="#app.create_item"><code class="docutils literal notranslate"><span class="pre">create_item()</span></code></a></li>
+<li><a class="reference internal" href="#app.create_review"><code class="docutils literal notranslate"><span class="pre">create_review()</span></code></a></li>
 <li><a class="reference internal" href="#app.create_sale"><code class="docutils literal notranslate"><span class="pre">create_sale()</span></code></a></li>
 <li><a class="reference internal" href="#app.deduct_stock_from_item"><code class="docutils literal notranslate"><span class="pre">deduct_stock_from_item()</span></code></a></li>
 <li><a class="reference internal" href="#app.fetch_all_customers"><code class="docutils literal notranslate"><span class="pre">fetch_all_customers()</span></code></a></li>
 <li><a class="reference internal" href="#app.fetch_customer"><code class="docutils literal notranslate"><span class="pre">fetch_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_customer_reviews"><code class="docutils literal notranslate"><span class="pre">fetch_customer_reviews()</span></code></a></li>
 <li><a class="reference internal" href="#app.fetch_inventory"><code class="docutils literal notranslate"><span class="pre">fetch_inventory()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_product_reviews"><code class="docutils literal notranslate"><span class="pre">fetch_product_reviews()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_review_details"><code class="docutils literal notranslate"><span class="pre">fetch_review_details()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_goods_sales"><code class="docutils literal notranslate"><span class="pre">get_goods_sales()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_purchases"><code class="docutils literal notranslate"><span class="pre">get_purchases()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_sales"><code class="docutils literal notranslate"><span class="pre">get_sales()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_specific_good"><code class="docutils literal notranslate"><span class="pre">get_specific_good()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_user_wishlist"><code class="docutils literal notranslate"><span class="pre">get_user_wishlist()</span></code></a></li>
+<li><a class="reference internal" href="#app.login"><code class="docutils literal notranslate"><span class="pre">login()</span></code></a></li>
+<li><a class="reference internal" href="#app.moderate_review_status"><code class="docutils literal notranslate"><span class="pre">moderate_review_status()</span></code></a></li>
 <li><a class="reference internal" href="#app.modify_customer"><code class="docutils literal notranslate"><span class="pre">modify_customer()</span></code></a></li>
 <li><a class="reference internal" href="#app.modify_item"><code class="docutils literal notranslate"><span class="pre">modify_item()</span></code></a></li>
+<li><a class="reference internal" href="#app.modify_review"><code class="docutils literal notranslate"><span class="pre">modify_review()</span></code></a></li>
 <li><a class="reference internal" href="#app.remove_customer"><code class="docutils literal notranslate"><span class="pre">remove_customer()</span></code></a></li>
 <li><a class="reference internal" href="#app.remove_item"><code class="docutils literal notranslate"><span class="pre">remove_item()</span></code></a></li>
+<li><a class="reference internal" href="#app.remove_review"><code class="docutils literal notranslate"><span class="pre">remove_review()</span></code></a></li>
 <li><a class="reference internal" href="#app.subtract_money_from_wallet"><code class="docutils literal notranslate"><span class="pre">subtract_money_from_wallet()</span></code></a></li>
 <li><a class="reference internal" href="#crud_customers.charge_customer"><code class="docutils literal notranslate"><span class="pre">charge_customer()</span></code></a></li>
 <li><a class="reference internal" href="#crud_customers.deduct_money"><code class="docutils literal notranslate"><span class="pre">deduct_money()</span></code></a></li>
@@ -84,8 +92,19 @@
 <li><a class="reference internal" href="#crud_sales.get_goods"><code class="docutils literal notranslate"><span class="pre">get_goods()</span></code></a></li>
 <li><a class="reference internal" href="#crud_sales.get_specific_goods"><code class="docutils literal notranslate"><span class="pre">get_specific_goods()</span></code></a></li>
 <li><a class="reference internal" href="#crud_sales.record_sale"><code class="docutils literal notranslate"><span class="pre">record_sale()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.delete_review"><code class="docutils literal notranslate"><span class="pre">delete_review()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.get_customer_reviews"><code class="docutils literal notranslate"><span class="pre">get_customer_reviews()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.get_product_reviews"><code class="docutils literal notranslate"><span class="pre">get_product_reviews()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.get_review_by_id"><code class="docutils literal notranslate"><span class="pre">get_review_by_id()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.get_review_details"><code class="docutils literal notranslate"><span class="pre">get_review_details()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.moderate_review"><code class="docutils literal notranslate"><span class="pre">moderate_review()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.submit_review"><code class="docutils literal notranslate"><span class="pre">submit_review()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.update_review"><code class="docutils literal notranslate"><span class="pre">update_review()</span></code></a></li>
 <li><a class="reference internal" href="#connect_db.get_db_connection"><code class="docutils literal notranslate"><span class="pre">get_db_connection()</span></code></a></li>
 <li><a class="reference internal" href="#initialize_db.initialize_db"><code class="docutils literal notranslate"><span class="pre">initialize_db()</span></code></a></li>
+<li><a class="reference internal" href="#utils.decode_jwt"><code class="docutils literal notranslate"><span class="pre">decode_jwt()</span></code></a></li>
+<li><a class="reference internal" href="#utils.generate_jwt"><code class="docutils literal notranslate"><span class="pre">generate_jwt()</span></code></a></li>
+<li><a class="reference internal" href="#utils.jwt_required"><code class="docutils literal notranslate"><span class="pre">jwt_required()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -220,6 +239,31 @@ documentation for details.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="app.create_review">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">create_review</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.create_review" title="Link to this definition"></a></dt>
+<dd><p>Submits a new review for a product.</p>
+<p>This endpoint allows a customer to submit a review with a rating and optional comment for a specific product.</p>
+<dl>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“product_id”: int,
+“rating”: int (1-5),
+“comment”: str (optional)</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Response (JSON):</dt><dd><ul class="simple">
+<li><p>Success message with status code 201, or</p></li>
+<li><p>Error message with status code 400 if required fields are missing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="app.create_sale">
 <span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">create_sale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.create_sale" title="Link to this definition"></a></dt>
 <dd><p>Create a new sale record.</p>
@@ -272,11 +316,56 @@ documentation for details.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_customer_reviews">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_customer_reviews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_customer_reviews" title="Link to this definition"></a></dt>
+<dd><p>Retrieves all reviews submitted by a specific customer.</p>
+<p>This endpoint fetches all reviews written by a customer, identified by their username, filtered by a status of ‘Pending’ or ‘Approved’.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer whose reviews are being retrieved.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response (JSON): A list of reviews with status code 200.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="app.fetch_inventory">
 <span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_inventory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_inventory" title="Link to this definition"></a></dt>
 <dd><p>Retrieve all inventory items.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>Response: JSON object with a list of inventory items.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_product_reviews">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_product_reviews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_product_reviews" title="Link to this definition"></a></dt>
+<dd><p>Retrieves all reviews for a specific product.</p>
+<p>This endpoint fetches all reviews associated with a given product ID, filtered by a status of ‘Pending’ or ‘Approved’.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (int): The ID of the product for which reviews are being retrieved.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response (JSON): A list of reviews with status code 200.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_review_details">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_review_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_review_details" title="Link to this definition"></a></dt>
+<dd><p>Retrieves details for a specific review.</p>
+<p>This endpoint fetches detailed information about a review, such as the product ID, customer username, rating, comment, and timestamp.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): The ID of the review to retrieve.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Response (JSON):</dt><dd><ul class="simple">
+<li><p>Review details with status code 200, or</p></li>
+<li><p>Error message with status code 404 if the review is not found or flagged.</p></li>
+</ul>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -341,6 +430,48 @@ documentation for details.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="app.login">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.login" title="Link to this definition"></a></dt>
+<dd><p>Authenticate a user and issue a JWT token.</p>
+<dl>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“username”: “user1”,
+“password”: “password123”</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON with JWT token if successful, error message otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.moderate_review_status">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">moderate_review_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.moderate_review_status" title="Link to this definition"></a></dt>
+<dd><p>Moderates a review by updating its status.</p>
+<p>This endpoint allows an administrator to change the status of a review to either ‘Approved’ or ‘Flagged’.</p>
+<dl>
+<dt>Args:</dt><dd><p>review_id (int): The ID of the review to be moderated.</p>
+</dd>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“status”: str (e.g., ‘Approved’, ‘Flagged’)</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Response (JSON):</dt><dd><ul class="simple">
+<li><p>Success message with status code 200, or</p></li>
+<li><p>Error message with status code 400 if an invalid status is provided.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="app.modify_customer">
 <span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">modify_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.modify_customer" title="Link to this definition"></a></dt>
 <dd><p>Updates information for an existing customer.</p>
@@ -375,6 +506,26 @@ documentation for details.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="app.modify_review">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">modify_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.modify_review" title="Link to this definition"></a></dt>
+<dd><p>Modify an existing review.
+This endpoint allows a user to modify a review identified by its ID. The user must be authenticated
+and authorized to modify the review. Only the user who created the review or an admin can modify it.
+Args:</p>
+<blockquote>
+<div><p>review_id (int): The ID of the review to be modified.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Response: A JSON response containing the updated review data if successful, or an error message
+with the appropriate HTTP status code if the review is not found or the user is not authorized.</p>
+</dd>
+<dt>Raises:</dt><dd><p>404: If the review with the specified ID is not found.
+403: If the user is not authorized to modify the review.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="app.remove_customer">
 <span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">remove_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.remove_customer" title="Link to this definition"></a></dt>
 <dd><p>Delete a Customer by Username</p>
@@ -395,6 +546,18 @@ documentation for details.</p>
 <dt>Args:</dt><dd><p>item_id (int): The ID of the item to delete.</p>
 </dd>
 <dt>Returns:</dt><dd><p>Response: JSON object indicating success or failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.remove_review">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">remove_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.remove_review" title="Link to this definition"></a></dt>
+<dd><p>Deletes a review if the user is the author or an admin.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON message indicating success or error.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -705,6 +868,108 @@ quantity (int): The quantity of the product to purchase.</p>
 </dl>
 </dd></dl>
 
+<dl class="py function" id="module-crud_reviews">
+<dt class="sig sig-object py" id="crud_reviews.delete_review">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">delete_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.delete_review" title="Link to this definition"></a></dt>
+<dd><p>Deletes a specific review.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Success or error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.get_customer_reviews">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">get_customer_reviews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.get_customer_reviews" title="Link to this definition"></a></dt>
+<dd><p>Retrieves all reviews submitted by a specific customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): Customer’s username.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: List of reviews submitted by the customer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.get_product_reviews">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">get_product_reviews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.get_product_reviews" title="Link to this definition"></a></dt>
+<dd><p>Retrieves all reviews for a specific product.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (int): ID of the product.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: List of reviews for the product.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.get_review_by_id">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">get_review_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.get_review_by_id" title="Link to this definition"></a></dt>
+<dd><p>Fetches a review by its ID.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: The review details or None if not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.get_review_details">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">get_review_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.get_review_details" title="Link to this definition"></a></dt>
+<dd><p>Retrieves detailed information for a specific review.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Review details.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.moderate_review">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">moderate_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.moderate_review" title="Link to this definition"></a></dt>
+<dd><p>Moderates a review by updating its status.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.
+status (str): New status (‘Approved’ or ‘Flagged’).</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Success or error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.submit_review">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">submit_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rating</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.submit_review" title="Link to this definition"></a></dt>
+<dd><p>Allows a customer to submit a new review for a product.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (int): ID of the product.
+username (str): Customer’s username.
+rating (int): Rating between 1 to 5.
+comment (str): Optional review comment.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Success or error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.update_review">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">update_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rating</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.update_review" title="Link to this definition"></a></dt>
+<dd><p>Updates an existing review with a new rating or comment.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.
+rating (int, optional): Updated rating.
+comment (str, optional): Updated comment.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Success or error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function" id="module-connect_db">
 <dt class="sig sig-object py" id="connect_db.get_db_connection">
 <span class="sig-prename descclassname"><span class="pre">connect_db.</span></span><span class="sig-name descname"><span class="pre">get_db_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#connect_db.get_db_connection" title="Link to this definition"></a></dt>
@@ -732,6 +997,43 @@ Uses the database path from Flask’s app config.</p>
 - UserRole: 1 (indicating admin role)</p></li>
 <li><p>Commit the changes and close the database connection.</p></li>
 </ol>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-utils">
+<dt class="sig sig-object py" id="utils.decode_jwt">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">decode_jwt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.decode_jwt" title="Link to this definition"></a></dt>
+<dd><p>Decode and validate a JWT.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>token (str): JWT token.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Decoded payload if valid, or an error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.generate_jwt">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">generate_jwt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.generate_jwt" title="Link to this definition"></a></dt>
+<dd><p>Generate a JWT for the given user.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): Username of the user.
+user_role (int): Role of the user (0: Customer, 1: Admin).</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: JWT token.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.jwt_required">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">jwt_required</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">admin_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.jwt_required" title="Link to this definition"></a></dt>
+<dd><p>Decorator to protect routes with JWT authentication.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>admin_only (bool): If True, requires admin privileges.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Function: Wrapped route function.</p>
 </dd>
 </dl>
 </dd></dl>

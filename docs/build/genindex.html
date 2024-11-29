@@ -75,6 +75,8 @@
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
@@ -128,6 +130,8 @@
 </li>
       <li><a href="index.html#app.create_item">create_item() (in module app)</a>
 </li>
+      <li><a href="index.html#app.create_review">create_review() (in module app)</a>
+</li>
       <li><a href="index.html#app.create_sale">create_sale() (in module app)</a>
 </li>
   </ul></td>
@@ -147,6 +151,13 @@
 </li>
       </ul></li>
       <li>
+    crud_reviews
+
+      <ul>
+        <li><a href="index.html#module-crud_reviews">module</a>
+</li>
+      </ul></li>
+      <li>
     crud_sales
 
       <ul>
@@ -159,6 +170,8 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#utils.decode_jwt">decode_jwt() (in module utils)</a>
+</li>
       <li><a href="index.html#crud_inventory.deduct_item">deduct_item() (in module crud_inventory)</a>
 </li>
       <li><a href="index.html#crud_customers.deduct_money">deduct_money() (in module crud_customers)</a>
@@ -171,6 +184,8 @@
 </li>
       <li><a href="index.html#crud_inventory.delete_item">delete_item() (in module crud_inventory)</a>
 </li>
+      <li><a href="index.html#crud_reviews.delete_review">delete_review() (in module crud_reviews)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -181,9 +196,15 @@
 </li>
       <li><a href="index.html#app.fetch_customer">fetch_customer() (in module app)</a>
 </li>
+      <li><a href="index.html#app.fetch_customer_reviews">fetch_customer_reviews() (in module app)</a>
+</li>
+      <li><a href="index.html#app.fetch_inventory">fetch_inventory() (in module app)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="index.html#app.fetch_inventory">fetch_inventory() (in module app)</a>
+      <li><a href="index.html#app.fetch_product_reviews">fetch_product_reviews() (in module app)</a>
+</li>
+      <li><a href="index.html#app.fetch_review_details">fetch_review_details() (in module app)</a>
 </li>
       <li><a href="index.html#crud_sales.fetch_sales">fetch_sales() (in module crud_sales)</a>
 </li>
@@ -195,6 +216,8 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#utils.generate_jwt">generate_jwt() (in module utils)</a>
+</li>
       <li><a href="index.html#crud_customers.get_all_customers">get_all_customers() (in module crud_customers)</a>
 </li>
       <li><a href="index.html#crud_inventory.get_all_items">get_all_items() (in module crud_inventory)</a>
@@ -203,17 +226,25 @@
 </li>
       <li><a href="index.html#crud_sales.get_customer_purchases">get_customer_purchases() (in module crud_sales)</a>
 </li>
+      <li><a href="index.html#crud_reviews.get_customer_reviews">get_customer_reviews() (in module crud_reviews)</a>
+</li>
       <li><a href="index.html#connect_db.get_db_connection">get_db_connection() (in module connect_db)</a>
 </li>
       <li><a href="index.html#crud_sales.get_goods">get_goods() (in module crud_sales)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="index.html#app.get_goods_sales">get_goods_sales() (in module app)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="index.html#crud_inventory.get_product_by_id">get_product_by_id() (in module crud_inventory)</a>
 </li>
+      <li><a href="index.html#crud_reviews.get_product_reviews">get_product_reviews() (in module crud_reviews)</a>
+</li>
       <li><a href="index.html#app.get_purchases">get_purchases() (in module app)</a>
+</li>
+      <li><a href="index.html#crud_reviews.get_review_by_id">get_review_by_id() (in module crud_reviews)</a>
+</li>
+      <li><a href="index.html#crud_reviews.get_review_details">get_review_details() (in module crud_reviews)</a>
 </li>
       <li><a href="index.html#app.get_sales">get_sales() (in module app)</a>
 </li>
@@ -243,12 +274,34 @@
   </ul></td>
 </tr></table>
 
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#utils.jwt_required">jwt_required() (in module utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#app.login">login() (in module app)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#crud_reviews.moderate_review">moderate_review() (in module crud_reviews)</a>
+</li>
+      <li><a href="index.html#app.moderate_review_status">moderate_review_status() (in module app)</a>
+</li>
       <li><a href="index.html#app.modify_customer">modify_customer() (in module app)</a>
 </li>
       <li><a href="index.html#app.modify_item">modify_item() (in module app)</a>
+</li>
+      <li><a href="index.html#app.modify_review">modify_review() (in module app)</a>
 </li>
       <li>
     module
@@ -262,9 +315,13 @@
 </li>
         <li><a href="index.html#module-crud_inventory">crud_inventory</a>
 </li>
+        <li><a href="index.html#module-crud_reviews">crud_reviews</a>
+</li>
         <li><a href="index.html#module-crud_sales">crud_sales</a>
 </li>
         <li><a href="index.html#module-initialize_db">initialize_db</a>
+</li>
+        <li><a href="index.html#module-utils">utils</a>
 </li>
       </ul></li>
   </ul></td>
@@ -283,11 +340,17 @@
 </li>
       <li><a href="index.html#app.remove_item">remove_item() (in module app)</a>
 </li>
+      <li><a href="index.html#app.remove_review">remove_review() (in module app)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#crud_reviews.submit_review">submit_review() (in module crud_reviews)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="index.html#app.subtract_money_from_wallet">subtract_money_from_wallet() (in module app)</a>
 </li>
@@ -299,10 +362,19 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="index.html#crud_customers.update_customer">update_customer() (in module crud_customers)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="index.html#crud_inventory.update_item">update_item() (in module crud_inventory)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#crud_reviews.update_review">update_review() (in module crud_reviews)</a>
+</li>
+      <li>
+    utils
+
+      <ul>
+        <li><a href="index.html#module-utils">module</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 

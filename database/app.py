@@ -13,6 +13,20 @@ from crud_inventory import add_item, deduct_item, update_item, get_all_items, de
 
 from crud_sales import record_sale, fetch_sales, get_goods, get_specific_goods, get_customer_purchases, add_to_wishlist, fetch_wishlist
 
+from crud_reviews import (
+    submit_review,
+    update_review,
+    delete_review,
+    get_product_reviews,
+    get_customer_reviews,
+    moderate_review,
+    get_review_details,
+    get_review_by_id
+)
+
+from utils import generate_jwt, jwt_required
+from werkzeug.security import check_password_hash
+
 app = Flask(__name__)
 
 @app.before_request
@@ -20,25 +34,40 @@ def before_request():
     # Ensure the app uses the correct database path
     app.config['DATABASE'] = app.config.get('DATABASE', 'ecommerce.db')
 
-"""
-Flask Application for Customer Database Service
+@app.route('/login', methods=['POST'])
+def login():
+    """
+    Authenticate a user and issue a JWT token.
 
-This module defines RESTful API endpoints for managing customers in the database.
-It provides functionality for registering customers, updating their information,
-retrieving customer details, and managing wallet balances.
+    Request Body:
+        {
+            "username": "user1",
+            "password": "password123"
+        }
 
-Endpoints:
-    - POST /db/customers: Register a new customer.
-    - DELETE /db/customers/<username>: Delete a customer by username.
-    - PUT /db/customers/<username>: Update customer information.
-    - GET /db/customers: Retrieve all customers.
-    - GET /db/customers/<username>: Retrieve a single customer by username.
-    - POST /db/customers/<username>/charge: Add money to a customer's wallet.
-    - POST /db/customers/<username>/deduct: Deduct money from a customer's wallet.
-"""
+    Returns:
+        Response: JSON with JWT token if successful, error message otherwise.
+    """
+    data = request.get_json()
+    username = data.get("username")
+    password = data.get("password")
 
+    if not username or not password:
+        return jsonify({"error": "Username and password are required"}), 400
+
+    customer = get_customer_by_username(username)
+    if not customer or not check_password_hash(customer["Password"], password):
+        return jsonify({"error": "Invalid credentials"}), 401
+
+    # Generate JWT token
+    token = generate_jwt(customer["Username"], customer["UserRole"])
+    return jsonify({"token": token}), 200
+
+
+################################################Customer##################################################
 # Register a New Customer
 @app.route('/db/customers', methods=['POST'])
+@jwt_required()
 def create_customer():
     """
     Register a New Customer
@@ -76,6 +105,7 @@ def create_customer():
 
 # Delete a Customer by Username
 @app.route('/db/customers/<username>', methods=['DELETE'])
+@jwt_required(admin_only=True)
 def remove_customer(username):
     """
     Delete a Customer by Username
@@ -97,6 +127,7 @@ def remove_customer(username):
 
 # Update Customer Information
 @app.route('/db/customers/<username>', methods=['PUT'])
+@jwt_required(admin_only=True)
 def modify_customer(username):
     """
     Updates information for an existing customer.
@@ -124,6 +155,7 @@ def modify_customer(username):
 
 # Get All Customers
 @app.route('/db/customers', methods=['GET'])
+@jwt_required(admin_only=True)
 def fetch_all_customers():
     """
     Retrieve All Customers
@@ -140,6 +172,7 @@ def fetch_all_customers():
 
 # Get a Single Customer by Username
 @app.route('/db/customers/<username>', methods=['GET'])
+@jwt_required()
 def fetch_customer(username):
     """
     Retrieve a Single Customer by Username
@@ -160,6 +193,7 @@ def fetch_customer(username):
 
 # Charge Customer Wallet
 @app.route('/db/customers/<username>/charge', methods=['POST'])
+@jwt_required()
 def add_money_to_wallet(username):
     """
     Charge a Customer's Wallet
@@ -197,6 +231,7 @@ def add_money_to_wallet(username):
 
 # Deduct Money from Wallet
 @app.route('/db/customers/<username>/deduct', methods=['POST'])
+@jwt_required()
 def subtract_money_from_wallet(username):
     """
     Deduct Money from a Customer's Wallet
@@ -237,6 +272,7 @@ def subtract_money_from_wallet(username):
 ###############################################Inventory#####################################################
 
 @app.route('/db/inventory', methods=['GET'])
+@jwt_required()
 def fetch_inventory():
     """
     Retrieve all inventory items.
@@ -248,6 +284,7 @@ def fetch_inventory():
     return jsonify(items), 200
 
 @app.route('/db/inventory', methods=['POST'])
+@jwt_required(admin_only=True)
 def create_item():
     """
     Create a new inventory item.
@@ -271,6 +308,7 @@ def create_item():
     return jsonify(response), 201
 
 @app.route('/db/inventory/<int:item_id>', methods=['PUT'])
+@jwt_required(admin_only=True)
 def modify_item(item_id):
     """
     Update fields for a specific inventory item.
@@ -291,6 +329,7 @@ def modify_item(item_id):
     return jsonify(response), 200
 
 @app.route('/db/inventory/<int:item_id>/deduct', methods=['POST'])
+@jwt_required(admin_only=True)
 def deduct_stock_from_item(item_id):
     """
     Deduct stock for a specific item in the inventory.
@@ -314,6 +353,7 @@ def deduct_stock_from_item(item_id):
     return jsonify(response), 200
 
 @app.route('/db/inventory/<int:item_id>', methods=['DELETE'])
+@jwt_required(admin_only=True)
 def remove_item(item_id):
     """
     Delete an inventory item by ID.
@@ -331,6 +371,7 @@ def remove_item(item_id):
 ############################################################Sales####################################################
 
 @app.route('/db/sales', methods=['POST'])
+@jwt_required()
 def create_sale():
     """
     Create a new sale record.
@@ -357,6 +398,7 @@ def create_sale():
 
 # Fetch all sales
 @app.route('/db/sales', methods=['GET'])
+@jwt_required()
 def get_sales():
     """
     Retrieve all sales records.
@@ -369,6 +411,7 @@ def get_sales():
 
 # Update a sale
 @app.route('/db/sales/goods', methods=['GET'])
+@jwt_required()
 def get_goods_sales():
     """
     Retrieve available goods for sale.
@@ -380,6 +423,7 @@ def get_goods_sales():
     return jsonify(goods), 200
 
 @app.route('/db/sales/good/<int:product_id>', methods=['GET'])
+@jwt_required()
 def get_specific_good(product_id):
     """
     Retrieve full details of a specific good.
@@ -397,6 +441,7 @@ def get_specific_good(product_id):
     return jsonify(product), 200
 
 @app.route('/db/sales/customer/<username>', methods=['GET'])
+@jwt_required()
 def get_purchases(username):
     """
     Retrieve all historical purchases of a specific customer.
@@ -411,6 +456,7 @@ def get_purchases(username):
     return jsonify(purchases), 200
 
 @app.route('/db/sales/wishlist/<username>', methods=['POST'])
+@jwt_required()
 def add_to_user_wishlist(username):
     """
     Add a product to the customer's wishlist.
@@ -436,6 +482,7 @@ def add_to_user_wishlist(username):
     return jsonify(response), 200
 
 @app.route('/db/sales/wishlist/<username>', methods=['GET'])
+@jwt_required()
 def get_user_wishlist(username):
     """
     Retrieve the wishlist of a specific customer.
@@ -448,6 +495,181 @@ def get_user_wishlist(username):
     """
     wishlist = fetch_wishlist(username)
     return jsonify(wishlist), 200
+
+
+
+##############################################Reviews####################################################
+
+@app.route('/reviews', methods=['POST'])
+@jwt_required()
+def create_review():
+    """
+    Submits a new review for a product.
+
+    This endpoint allows a customer to submit a review with a rating and optional comment for a specific product.
+
+    Request Body:
+        {
+            "product_id": int,
+            "rating": int (1-5),
+            "comment": str (optional)
+        }
+
+    Returns:
+        Response (JSON):
+            - Success message with status code 201, or
+            - Error message with status code 400 if required fields are missing.
+    """
+    data = request.get_json()
+    required_fields = ['product_id', 'rating']
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": "Missing required fields"}), 400
+    
+    user = request.user  # Added by `jwt_required` decorator
+    username = user.get("username")
+    response = submit_review(data['product_id'], username, data['rating'], data.get('comment'))
+    return jsonify(response), 201
+
+@app.route('/reviews/<int:review_id>', methods=['PUT'])
+@jwt_required()
+def modify_review(review_id):
+    """
+    Modify an existing review.
+    This endpoint allows a user to modify a review identified by its ID. The user must be authenticated
+    and authorized to modify the review. Only the user who created the review or an admin can modify it.
+    Args:
+        review_id (int): The ID of the review to be modified.
+    Returns:
+        Response: A JSON response containing the updated review data if successful, or an error message
+        with the appropriate HTTP status code if the review is not found or the user is not authorized.
+    Raises:
+        404: If the review with the specified ID is not found.
+        403: If the user is not authorized to modify the review.
+    """
+    user = request.user  # Added by `jwt_required` decorator
+    username = user.get("username")
+    user_role = user.get("user_role")
+
+    review = get_review_by_id(review_id)
+    if not review:
+        return jsonify({"error": "Review not found"}), 404
+    
+    if review["CustomerUsername"] != username and user_role != 1:
+        return jsonify({"error": "Permission denied"}), 403
+    
+    data = request.get_json()
+    response = update_review(review_id, data.get('rating'), data.get('comment'))
+    return jsonify(response), 200
+
+@app.route('/reviews/<int:review_id>', methods=['DELETE'])
+@jwt_required()
+def remove_review(review_id):
+    """
+    Deletes a review if the user is the author or an admin.
+
+    Args:
+        review_id (int): ID of the review.
+
+    Returns:
+        Response: JSON message indicating success or error.
+    """
+    # Retrieve the user's role and username from the JWT
+    user = request.user  # Added by `jwt_required` decorator
+    username = user.get("username")
+    user_role = user.get("user_role")
+
+    # Fetch the review details to check ownership or admin privileges
+    review = get_review_by_id(review_id)
+    if not review:
+        return jsonify({"error": "Review not found"}), 404
+
+    # Check if the user is the review author or an admin
+    if review["CustomerUsername"] != username and user_role != 1:
+        return jsonify({"error": "Permission denied"}), 403
+
+    # Perform the deletion
+    response = delete_review(review_id)
+    return jsonify(response), 200
+
+@app.route('/reviews/product/<int:product_id>', methods=['GET'])
+@jwt_required()
+def fetch_product_reviews(product_id):
+    """
+    Retrieves all reviews for a specific product.
+
+    This endpoint fetches all reviews associated with a given product ID, filtered by a status of 'Pending' or 'Approved'.
+
+    Args:
+        product_id (int): The ID of the product for which reviews are being retrieved.
+
+    Returns:
+        Response (JSON): A list of reviews with status code 200.
+    """
+    reviews = get_product_reviews(product_id)
+    return jsonify(reviews), 200
+
+@app.route('/reviews/customer/<username>', methods=['GET'])
+@jwt_required()
+def fetch_customer_reviews(username):
+    """
+    Retrieves all reviews submitted by a specific customer.
+
+    This endpoint fetches all reviews written by a customer, identified by their username, filtered by a status of 'Pending' or 'Approved'.
+
+    Args:
+        username (str): The username of the customer whose reviews are being retrieved.
+
+    Returns:
+        Response (JSON): A list of reviews with status code 200.
+    """
+    reviews = get_customer_reviews(username)
+    return jsonify(reviews), 200
+
+@app.route('/reviews/<int:review_id>/moderate', methods=['PUT'])
+@jwt_required(admin_only=True)
+def moderate_review_status(review_id):
+    """
+    Moderates a review by updating its status.
+
+    This endpoint allows an administrator to change the status of a review to either 'Approved' or 'Flagged'.
+
+    Args:
+        review_id (int): The ID of the review to be moderated.
+
+    Request Body:
+        {
+            "status": str (e.g., 'Approved', 'Flagged')
+        }
+
+    Returns:
+        Response (JSON):
+            - Success message with status code 200, or
+            - Error message with status code 400 if an invalid status is provided.
+    """
+    data = request.get_json()
+    response = moderate_review(review_id, data.get('status'))
+    return jsonify(response), 200
+
+@app.route('/reviews/<int:review_id>', methods=['GET'])
+@jwt_required()
+def fetch_review_details(review_id):
+    """
+    Retrieves details for a specific review.
+
+    This endpoint fetches detailed information about a review, such as the product ID, customer username, rating, comment, and timestamp.
+
+    Args:
+        review_id (int): The ID of the review to retrieve.
+
+    Returns:
+        Response (JSON):
+            - Review details with status code 200, or
+            - Error message with status code 404 if the review is not found or flagged.
+    """
+    review = get_review_details(review_id)
+    if not review:
+        return jsonify({"error": "Review not found or has been flagged by Admin"}), 404
+    return jsonify(review), 200
 
 if __name__ == '__main__':
     initialize_db()
