@@ -30,14 +30,14 @@ def record_sale(customer_username, product_id, quantity):
 
     total_price = product["Price"] * quantity
 
-    # Check wallet balance and stock availability
-    if customer["Wallet"] < total_price:
-        return {"error": "Insufficient wallet balance"}
+    # Prioritize stock validation
     if product["Stock"] < quantity:
         return {"error": "Insufficient stock"}
+    # Wallet validation after stock check
+    if customer["Wallet"] < total_price:
+        return {"error": "Insufficient wallet balance"}
 
     # Deduct money and stock
-
     deduct_money(customer_username, total_price)
     deduct_item(product_id, quantity)
 
@@ -47,6 +47,7 @@ def record_sale(customer_username, product_id, quantity):
         VALUES (?, ?, ?, ?)
     ''', (customer_username, product_id, quantity, total_price))
 
+    # Update purchase history
     cursor.execute('''
         SELECT PurchaseHistory FROM HistoricalPurchases WHERE CustomerUsername = ?
     ''', (customer_username,))
@@ -60,14 +61,12 @@ def record_sale(customer_username, product_id, quantity):
     }
 
     if history:
-        # Update existing history
         purchase_history = json.loads(history[0])
         purchase_history.append(new_purchase)
         cursor.execute('''
             UPDATE HistoricalPurchases SET PurchaseHistory = ? WHERE CustomerUsername = ?
         ''', (json.dumps(purchase_history), customer_username))
     else:
-        # Create new history
         purchase_history = [new_purchase]
         cursor.execute('''
             INSERT INTO HistoricalPurchases (CustomerUsername, PurchaseHistory)
@@ -78,6 +77,7 @@ def record_sale(customer_username, product_id, quantity):
     conn.close()
 
     return {"message": "Sale recorded successfully"}
+
 
 def get_goods():
     """
