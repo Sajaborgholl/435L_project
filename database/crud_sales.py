@@ -226,3 +226,48 @@ def fetch_wishlist(username):
     wishlist = cursor.fetchone()
     conn.close()
     return json.loads(wishlist[0]) if wishlist else None
+
+
+def recommend_products(username, limit=3):
+    """
+    Recommends products to a customer based on their purchase history.
+
+    Args:
+        username (str): The username of the customer.
+        limit (int): Maximum number of products to recommend.
+
+    Returns:
+        list: List of recommended products.
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Fetch categories of products purchased by the user
+    cursor.execute('''
+        SELECT DISTINCT i.Category 
+        FROM Sales s
+        JOIN Inventory i ON s.ProductID = i.ProductID
+        WHERE s.CustomerUsername = ?
+    ''', (username,))
+    purchased_categories = [row['Category'] for row in cursor.fetchall()]
+
+    if not purchased_categories:
+        conn.close()
+        return []
+
+    # Fetch products from these categories not purchased by the user
+    cursor.execute('''
+        SELECT i.ProductID, i.Name, i.Price, i.Category, i.Description
+        FROM Inventory i
+        WHERE i.Category IN ({categories})
+        AND i.ProductID NOT IN (
+            SELECT s.ProductID 
+            FROM Sales s 
+            WHERE s.CustomerUsername = ?
+        )
+        LIMIT ?
+    '''.format(categories=','.join(['?'] * len(purchased_categories))), (*purchased_categories, username, limit))
+
+    recommendations = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return recommendations

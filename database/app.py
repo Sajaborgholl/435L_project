@@ -11,7 +11,7 @@ from crud_customers import (
 )
 from crud_inventory import add_item, deduct_item, update_item, get_all_items, delete_item
 
-from crud_sales import record_sale, fetch_sales, get_goods, get_specific_goods, get_customer_purchases, add_to_wishlist, fetch_wishlist
+from crud_sales import record_sale, fetch_sales, get_goods, get_specific_goods, get_customer_purchases, add_to_wishlist, fetch_wishlist, recommend_products
 
 from crud_reviews import (
     submit_review,
@@ -496,7 +496,22 @@ def get_user_wishlist(username):
     wishlist = fetch_wishlist(username)
     return jsonify(wishlist), 200
 
+@app.route('/recommendations/<username>', methods=['GET'])
+@jwt_required()
+def get_recommendations(username):
+    """
+    Fetch recommendations for a customer based on purchase history.
 
+    Args:
+        username (str): The username of the customer.
+
+    Returns:
+        Response: JSON object containing a list of recommended products.
+    """
+    recommendations = recommend_products(username)
+    if not recommendations:
+        return jsonify({"message": "No recommendations available."}), 200
+    return jsonify(recommendations), 200
 
 ##############################################Reviews####################################################
 

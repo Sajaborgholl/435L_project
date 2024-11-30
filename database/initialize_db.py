@@ -35,6 +35,24 @@ def initialize_db(db_path='ecommerce.db'):
         (FullName, Username, Password, Age, Address, Gender, MaritalStatus, Wallet, UserRole)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', admin_user)
-    
+
+    sample_items = [
+        ('Apple iPhone 14', 'Electronics', 999.99, 'Latest Apple smartphone.', 50),
+        ('Samsung Galaxy S23', 'Electronics', 899.99, 'High-end Android smartphone.', 40),
+        ('Leather Jacket', 'Clothes', 149.99, 'Stylish leather jacket.', 30),
+        ('Wireless Earbuds', 'Accessories', 49.99, 'High-quality wireless earbuds.', 100),
+        ('Organic Almonds', 'Food', 19.99, 'Healthy organic almonds.', 200),
+        ('Sony WH-1000XM4', 'Electronics', 349.99, 'Noise-cancelling over-ear headphones.', 25),
+        ('Dell XPS 13', 'Electronics', 1199.99, 'High-performance laptop.', 15),
+        ('Nike Air Max', 'Clothes', 129.99, 'Comfortable running shoes.', 60),
+        ('Ray-Ban Sunglasses', 'Accessories', 159.99, 'Stylish sunglasses.', 80),
+        ('Organic Quinoa', 'Food', 9.99, 'Healthy organic quinoa.', 150)
+    ]
+    cursor.executemany('''
+        INSERT OR IGNORE INTO Inventory 
+        (Name, Category, Price, Description, Stock)
+        VALUES (?, ?, ?, ?, ?)
+    ''', sample_items)
+
     conn.commit()
     conn.close()

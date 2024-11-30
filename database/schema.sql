@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Customers (
 -- Inventory Table
 CREATE TABLE IF NOT EXISTS Inventory (
     ProductID INTEGER PRIMARY KEY,
-    Name TEXT NOT NULL,
+    Name TEXT NOT NULL UNIQUE,
     Category TEXT NOT NULL CHECK(Category IN ('Food', 'Clothes', 'Accessories', 'Electronics')),
     Price REAL NOT NULL,
     Description TEXT,
