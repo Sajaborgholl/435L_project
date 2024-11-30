@@ -67,7 +67,7 @@ def login():
 ################################################Customer##################################################
 # Register a New Customer
 @app.route('/db/customers', methods=['POST'])
-@jwt_required()
+@jwt_required(admin_only=True)
 def create_customer():
     """
     Register a New Customer
@@ -172,7 +172,7 @@ def fetch_all_customers():
 
 # Get a Single Customer by Username
 @app.route('/db/customers/<username>', methods=['GET'])
-@jwt_required()
+@jwt_required(admin_only=True)
 def fetch_customer(username):
     """
     Retrieve a Single Customer by Username
@@ -193,7 +193,7 @@ def fetch_customer(username):
 
 # Charge Customer Wallet
 @app.route('/db/customers/<username>/charge', methods=['POST'])
-@jwt_required()
+@jwt_required(admin_only=True)
 def add_money_to_wallet(username):
     """
     Charge a Customer's Wallet
@@ -231,7 +231,7 @@ def add_money_to_wallet(username):
 
 # Deduct Money from Wallet
 @app.route('/db/customers/<username>/deduct', methods=['POST'])
-@jwt_required()
+@jwt_required(admin_only=True)
 def subtract_money_from_wallet(username):
     """
     Deduct Money from a Customer's Wallet
@@ -272,7 +272,7 @@ def subtract_money_from_wallet(username):
 ###############################################Inventory#####################################################
 
 @app.route('/db/inventory', methods=['GET'])
-@jwt_required()
+@jwt_required(admin_only=True)
 def fetch_inventory():
     """
     Retrieve all inventory items.
@@ -382,15 +382,16 @@ def create_sale():
     Returns:
         Response: JSON object indicating success or failure message.
     """
+    user = request.user  # Added by `jwt_required` decorator
     data = request.get_json()
-    customer_id = data.get('customer_username')
+    customer_username = user.get('username')
     product_id = data.get('product_id')
     quantity = data.get('quantity')
 
-    if not all([customer_id, product_id, quantity]):
+    if not all([customer_username, product_id, quantity]):
         return jsonify({"error": "Missing fields"}), 400
 
-    response = record_sale(customer_id, product_id, quantity)
+    response = record_sale(customer_username, product_id, quantity)
     if "error" in response:
         return jsonify(response), 400
 
@@ -398,7 +399,7 @@ def create_sale():
 
 # Fetch all sales
 @app.route('/db/sales', methods=['GET'])
-@jwt_required()
+@jwt_required(admin_only=True)
 def get_sales():
     """
     Retrieve all sales records.
@@ -409,7 +410,6 @@ def get_sales():
     sales = fetch_sales()
     return jsonify(sales), 200
 
-# Update a sale
 @app.route('/db/sales/goods', methods=['GET'])
 @jwt_required()
 def get_goods_sales():
@@ -452,6 +452,10 @@ def get_purchases(username):
     Returns:
         Response: JSON object containing a list of purchases made by the customer.
     """
+    user = request.user  # Added by `jwt_required` decorator
+    if user.get("username") != username and user.get("user_role") != 1:
+        return jsonify({"error": "Permission denied"}), 403
+
     purchases = get_customer_purchases(username)
     return jsonify(purchases), 200
 
@@ -472,6 +476,9 @@ def add_to_user_wishlist(username):
     Returns:
         Response: JSON object indicating success or failure.
     """
+    user = request.user  # Added by `jwt_required` decorator
+    if user.get("username") != username and user.get("user_role") != 1:
+        return jsonify({"error": "Permission denied"}), 403
     data = request.get_json()
     product_id = data.get('product_id')
 
@@ -493,6 +500,9 @@ def get_user_wishlist(username):
     Returns:
         Response: JSON object containing a list of products in the customer's wishlist.
     """
+    user = request.user  # Added by `jwt_required` decorator
+    if user.get("username") != username and user.get("user_role") != 1:
+        return jsonify({"error": "Permission denied"}), 403
     wishlist = fetch_wishlist(username)
     return jsonify(wishlist), 200
 
@@ -508,6 +518,9 @@ def get_recommendations(username):
     Returns:
         Response: JSON object containing a list of recommended products.
     """
+    user = request.user  # Added by `jwt_required` decorator
+    if user.get("username") != username and user.get("user_role") != 1:
+        return jsonify({"error": "Permission denied"}), 403
     recommendations = recommend_products(username)
     if not recommendations:
         return jsonify({"message": "No recommendations available."}), 200
@@ -637,6 +650,9 @@ def fetch_customer_reviews(username):
     Returns:
         Response (JSON): A list of reviews with status code 200.
     """
+    user = request.user  # Added by `jwt_required` decorator
+    if user.get("username") != username and user.get("user_role") != 1:
+        return jsonify({"error": "Permission denied"}), 403
     reviews = get_customer_reviews(username)
     return jsonify(reviews), 200
 
