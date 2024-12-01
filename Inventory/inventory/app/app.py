@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 # URL for the Database Service
-DATABASE_SERVICE_URL = "http://localhost:5001/db/inventory"
+DATABASE_SERVICE_URL = "http://database:5001/db/inventory"
 
 
 @app.route('/inventory', methods=['GET'])

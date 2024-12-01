@@ -8,7 +8,7 @@ except ImportError:
 app = Flask(__name__)
 
 # URL for the Database Service
-DATABASE_SERVICE_URL = "http://localhost:5001/db/customers"
+DATABASE_SERVICE_URL = "http://database:5001/db/customers"
 
 
 @app.route('/customers/register', methods=['POST'])

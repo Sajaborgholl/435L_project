@@ -17,7 +17,7 @@ services:
     networks:
       - ecommerce-network
     environment:
-      - DATABASE_SERVICE_URL=http://database:5001
+      - DATABASE_SERVICE_URL=http://database:5001/db/customers
 
   inventory:
     build:
@@ -27,7 +27,7 @@ services:
     networks:
       - ecommerce-network
     environment:
-      - DATABASE_SERVICE_URL=http://database:5001
+      - DATABASE_SERVICE_URL=http://database:5001/db/inventory
 
   sales:
     build:
@@ -37,7 +37,7 @@ services:
     networks:
       - ecommerce-network
     environment:
-      - DATABASE_SERVICE_URL=http://database:5001
+      - DATABASE_SERVICE_URL=http://database:5001/db/sales
 
   reviews:
     build:
@@ -47,7 +47,7 @@ services:
     networks:
       - ecommerce-network
     environment:
-      - DATABASE_SERVICE_URL=http://database:5001
+      - DATABASE_SERVICE_URL=http://database:5001/reviews
 
 networks:
   ecommerce-network:
