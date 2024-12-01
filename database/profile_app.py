@@ -2,12 +2,13 @@ import cProfile
 from app import app
 import pstats
 from utils import generate_jwt
+from memory_profiler import profile
 
 # Generate tokens
 admin_token = generate_jwt("admin", 1)  # Admin user
 user_token = generate_jwt("johndoe", 0)  # Regular user
 
-def safe_request(client, method, url, headers=None, **kwargs):
+def safe_request(client, method, url, headers=None, **kwargs):  
     """
     Safely perform a request and log errors if any.
     """
@@ -16,7 +17,8 @@ def safe_request(client, method, url, headers=None, **kwargs):
     except Exception as e:
         print(f"Exception during {method.upper()} {url}: {e}")
         return None
-
+    
+@profile
 def profile_app():
     with app.test_client() as client:
         headers_admin = {"Authorization": f"Bearer {admin_token}"}

@@ -139,7 +139,7 @@ def test_create_sale(test_client, user_token, admin_token):
 
     # Create a sale
     response = test_client.post('/db/sales', headers={"Authorization": f"Bearer {user_token}"}, json={
-        "product_id": 2,
+        "product_id": 11,
         "quantity": 1
     })
     assert response.status_code == 201
