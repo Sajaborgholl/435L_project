@@ -60,6 +60,7 @@
 <li><a class="reference internal" href="#app.fetch_review_details"><code class="docutils literal notranslate"><span class="pre">fetch_review_details()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_goods_sales"><code class="docutils literal notranslate"><span class="pre">get_goods_sales()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_purchases"><code class="docutils literal notranslate"><span class="pre">get_purchases()</span></code></a></li>
+<li><a class="reference internal" href="#app.get_recommendations"><code class="docutils literal notranslate"><span class="pre">get_recommendations()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_sales"><code class="docutils literal notranslate"><span class="pre">get_sales()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_specific_good"><code class="docutils literal notranslate"><span class="pre">get_specific_good()</span></code></a></li>
 <li><a class="reference internal" href="#app.get_user_wishlist"><code class="docutils literal notranslate"><span class="pre">get_user_wishlist()</span></code></a></li>
@@ -91,6 +92,7 @@
 <li><a class="reference internal" href="#crud_sales.get_customer_purchases"><code class="docutils literal notranslate"><span class="pre">get_customer_purchases()</span></code></a></li>
 <li><a class="reference internal" href="#crud_sales.get_goods"><code class="docutils literal notranslate"><span class="pre">get_goods()</span></code></a></li>
 <li><a class="reference internal" href="#crud_sales.get_specific_goods"><code class="docutils literal notranslate"><span class="pre">get_specific_goods()</span></code></a></li>
+<li><a class="reference internal" href="#crud_sales.recommend_products"><code class="docutils literal notranslate"><span class="pre">recommend_products()</span></code></a></li>
 <li><a class="reference internal" href="#crud_sales.record_sale"><code class="docutils literal notranslate"><span class="pre">record_sale()</span></code></a></li>
 <li><a class="reference internal" href="#crud_reviews.delete_review"><code class="docutils literal notranslate"><span class="pre">delete_review()</span></code></a></li>
 <li><a class="reference internal" href="#crud_reviews.get_customer_reviews"><code class="docutils literal notranslate"><span class="pre">get_customer_reviews()</span></code></a></li>
@@ -388,6 +390,18 @@ documentation for details.</p>
 <dt>Args:</dt><dd><p>username (str): The username of the customer.</p>
 </dd>
 <dt>Returns:</dt><dd><p>Response: JSON object containing a list of purchases made by the customer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.get_recommendations">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">get_recommendations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.get_recommendations" title="Link to this definition"></a></dt>
+<dd><p>Fetch recommendations for a customer based on purchase history.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object containing a list of recommended products.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -850,6 +864,19 @@ product_id (int): The ID of the product to add to the wishlist.</p>
 <dt>Args:</dt><dd><p>product_id (int): The ID of the product to fetch.</p>
 </dd>
 <dt>Returns:</dt><dd><p>dict: A dictionary containing the product details.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_sales.recommend_products">
+<span class="sig-prename descclassname"><span class="pre">crud_sales.</span></span><span class="sig-name descname"><span class="pre">recommend_products</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_sales.recommend_products" title="Link to this definition"></a></dt>
+<dd><p>Recommends products to a customer based on their purchase history.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer.
+limit (int): Maximum number of products to recommend.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: List of recommended products.</p>
 </dd>
 </dl>
 </dd></dl>
