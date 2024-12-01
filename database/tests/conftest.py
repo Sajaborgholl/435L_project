@@ -25,8 +25,13 @@ def test_app():
         if os.path.exists(TEST_DB):
             os.remove(TEST_DB)
         initialize_db(TEST_DB)
+        conn = get_db_connection()
+        conn.execute("DELETE FROM Reviews")
+        conn.commit()
+        conn.close()
         yield app
-
+        
+        
         # Clean up the test database after tests
         try:
             # Explicitly close any lingering connections

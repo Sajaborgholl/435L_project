@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS Reviews (
     CustomerUsername TEXT NOT NULL,
     Rating INTEGER NOT NULL CHECK (Rating BETWEEN 1 AND 5),
     Comment TEXT,
-    Status TEXT DEFAULT 'Pending', -- 'Pending', 'Approved', 'Flagged'
+    Status TEXT DEFAULT 'Pending' NOT NULL, -- 'Pending', 'Approved', 'Flagged'
     Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (ProductID) REFERENCES Inventory(ProductID),
     FOREIGN KEY (CustomerUsername) REFERENCES Customers(Username)

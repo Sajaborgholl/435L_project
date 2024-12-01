@@ -1,5 +1,6 @@
 from connect_db import get_db_connection
-
+from crud_inventory import get_product_by_id
+from crud_customers import get_customer_by_username
 def submit_review(product_id, username, rating, comment=None):
     """
     Allows a customer to submit a new review for a product.
@@ -13,13 +14,31 @@ def submit_review(product_id, username, rating, comment=None):
     Returns:
         dict: Success or error message.
     """
+    product = get_product_by_id(product_id)
+    if not product:
+        return {"error": "Product not found"}
+    
+    customer = get_customer_by_username(username)
+    if not customer:
+        return {"error": "Customer not found"}
+
     conn = get_db_connection()
     cursor = conn.cursor()
 
+    cursor.execute(''' 
+        SELECT * FROM Reviews WHERE ProductID = ? AND CustomerUsername = ?
+    ''', (product_id, username))
+    existing_review = cursor.fetchone()
+    
+    if existing_review:
+        return {"error": "Review already exists for this product by this customer"}
+    
     cursor.execute('''
         INSERT INTO Reviews (ProductID, CustomerUsername, Rating, Comment)
         VALUES (?, ?, ?, ?)
     ''', (product_id, username, rating, comment))
+
+    print("Review inserted, committing to database...")  # Debugging
 
     conn.commit()
     conn.close()
@@ -37,6 +56,10 @@ def update_review(review_id, rating=None, comment=None):
     Returns:
         dict: Success or error message.
     """
+    review = get_review_by_id(review_id)
+    if not review:
+        return {"error": "Review not found"}
+    
     conn = get_db_connection()
     cursor = conn.cursor()
 
@@ -91,6 +114,9 @@ def delete_review(review_id):
     Returns:
         dict: Success or error message.
     """
+    review = get_review_by_id(review_id)
+    if not review:
+        return {"error": "Review not found"}
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('DELETE FROM Reviews WHERE ReviewID = ?', (review_id,))
@@ -157,6 +183,10 @@ def moderate_review(review_id, status):
     Returns:
         dict: Success or error message.
     """
+    review = get_review_by_id(review_id)
+    if not review:
+        return {"error": "Review not found"}
+    
     if status not in ['Approved', 'Flagged']:
         return {"error": "Invalid status."}
 
