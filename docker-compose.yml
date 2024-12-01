@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  database:
+    build:
+      context: ./Database
+    ports:
+      - "5001:5001"
+    networks:
+      - ecommerce-network
+
+  customers:
+    build:
+      context: ./Customers
+    ports:
+      - "5002:5002"
+    networks:
+      - ecommerce-network
+    environment:
+      - DATABASE_SERVICE_URL=http://database:5001
+
+  inventory:
+    build:
+      context: ./Inventory
+    ports:
+      - "5003:5003"
+    networks:
+      - ecommerce-network
+    environment:
+      - DATABASE_SERVICE_URL=http://database:5001
+
+  sales:
+    build:
+      context: ./Sales
+    ports:
+      - "5004:5004"
+    networks:
+      - ecommerce-network
+    environment:
+      - DATABASE_SERVICE_URL=http://database:5001
+
+  reviews:
+    build:
+      context: ./Reviews
+    ports:
+      - "5005:5005"
+    networks:
+      - ecommerce-network
+    environment:
+      - DATABASE_SERVICE_URL=http://database:5001
+
+networks:
+  ecommerce-network:
+    driver: bridge

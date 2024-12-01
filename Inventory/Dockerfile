@@ -17,4 +17,4 @@ EXPOSE 5003
 ENV FLASK_ENV=production
 
 # Run app.py when the container launches
-CMD ["python", "app.py"]
+CMD ["python", "inventory/app/app.py"]

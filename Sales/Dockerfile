@@ -22,4 +22,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5004
 
 # Run app.py when the container launches
-CMD ["python", "database/app.py"]
+CMD ["python", "sales/app/app.py"]
