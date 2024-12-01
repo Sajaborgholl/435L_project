@@ -506,7 +506,7 @@ def get_user_wishlist(username):
     wishlist = fetch_wishlist(username)
     return jsonify(wishlist), 200
 
-@app.route('/recommendations/<username>', methods=['GET'])
+@app.route('db/sales/recommendations/<username>', methods=['GET'])
 @jwt_required()
 def get_recommendations(username):
     """

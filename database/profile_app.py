@@ -136,7 +136,7 @@ def profile_app():
         safe_request(client, "get", "/db/sales/wishlist/johndoe", headers=headers_user)
 
         print("Fetching recommendations...")
-        safe_request(client, "get", "/recommendations/johndoe", headers=headers_user)
+        safe_request(client, "get", "db/sales/recommendations/johndoe", headers=headers_user)
 
         #Reviews
         print("Submitting a review...")

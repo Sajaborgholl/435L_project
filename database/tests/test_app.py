@@ -205,7 +205,7 @@ def test_get_user_recommendations(test_client, user_token, admin_token):
         })
 
     # Get recommendations
-    response = test_client.get('/recommendations/johndoe', headers={"Authorization": f"Bearer {user_token}"})
+    response = test_client.get('db/sales/recommendations/johndoe', headers={"Authorization": f"Bearer {user_token}"})
     assert response.status_code == 200
     assert isinstance(response.get_json(), list)
 
