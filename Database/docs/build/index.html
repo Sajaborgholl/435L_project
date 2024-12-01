@@ -1,0 +1,1098 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Database documentation &mdash; Database  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Database
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Database documentation</a></li>
+<li><a class="reference internal" href="#module-app">Modules</a><ul>
+<li><a class="reference internal" href="#app.add_money_to_wallet"><code class="docutils literal notranslate"><span class="pre">add_money_to_wallet()</span></code></a></li>
+<li><a class="reference internal" href="#app.add_to_user_wishlist"><code class="docutils literal notranslate"><span class="pre">add_to_user_wishlist()</span></code></a></li>
+<li><a class="reference internal" href="#app.before_request"><code class="docutils literal notranslate"><span class="pre">before_request()</span></code></a></li>
+<li><a class="reference internal" href="#app.create_customer"><code class="docutils literal notranslate"><span class="pre">create_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.create_item"><code class="docutils literal notranslate"><span class="pre">create_item()</span></code></a></li>
+<li><a class="reference internal" href="#app.create_review"><code class="docutils literal notranslate"><span class="pre">create_review()</span></code></a></li>
+<li><a class="reference internal" href="#app.create_sale"><code class="docutils literal notranslate"><span class="pre">create_sale()</span></code></a></li>
+<li><a class="reference internal" href="#app.deduct_stock_from_item"><code class="docutils literal notranslate"><span class="pre">deduct_stock_from_item()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_all_customers"><code class="docutils literal notranslate"><span class="pre">fetch_all_customers()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_customer"><code class="docutils literal notranslate"><span class="pre">fetch_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_customer_reviews"><code class="docutils literal notranslate"><span class="pre">fetch_customer_reviews()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_inventory"><code class="docutils literal notranslate"><span class="pre">fetch_inventory()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_product_reviews"><code class="docutils literal notranslate"><span class="pre">fetch_product_reviews()</span></code></a></li>
+<li><a class="reference internal" href="#app.fetch_review_details"><code class="docutils literal notranslate"><span class="pre">fetch_review_details()</span></code></a></li>
+<li><a class="reference internal" href="#app.get_goods_sales"><code class="docutils literal notranslate"><span class="pre">get_goods_sales()</span></code></a></li>
+<li><a class="reference internal" href="#app.get_purchases"><code class="docutils literal notranslate"><span class="pre">get_purchases()</span></code></a></li>
+<li><a class="reference internal" href="#app.get_recommendations"><code class="docutils literal notranslate"><span class="pre">get_recommendations()</span></code></a></li>
+<li><a class="reference internal" href="#app.get_sales"><code class="docutils literal notranslate"><span class="pre">get_sales()</span></code></a></li>
+<li><a class="reference internal" href="#app.get_specific_good"><code class="docutils literal notranslate"><span class="pre">get_specific_good()</span></code></a></li>
+<li><a class="reference internal" href="#app.get_user_wishlist"><code class="docutils literal notranslate"><span class="pre">get_user_wishlist()</span></code></a></li>
+<li><a class="reference internal" href="#app.login"><code class="docutils literal notranslate"><span class="pre">login()</span></code></a></li>
+<li><a class="reference internal" href="#app.moderate_review_status"><code class="docutils literal notranslate"><span class="pre">moderate_review_status()</span></code></a></li>
+<li><a class="reference internal" href="#app.modify_customer"><code class="docutils literal notranslate"><span class="pre">modify_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.modify_item"><code class="docutils literal notranslate"><span class="pre">modify_item()</span></code></a></li>
+<li><a class="reference internal" href="#app.modify_review"><code class="docutils literal notranslate"><span class="pre">modify_review()</span></code></a></li>
+<li><a class="reference internal" href="#app.remove_customer"><code class="docutils literal notranslate"><span class="pre">remove_customer()</span></code></a></li>
+<li><a class="reference internal" href="#app.remove_item"><code class="docutils literal notranslate"><span class="pre">remove_item()</span></code></a></li>
+<li><a class="reference internal" href="#app.remove_review"><code class="docutils literal notranslate"><span class="pre">remove_review()</span></code></a></li>
+<li><a class="reference internal" href="#app.subtract_money_from_wallet"><code class="docutils literal notranslate"><span class="pre">subtract_money_from_wallet()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.charge_customer"><code class="docutils literal notranslate"><span class="pre">charge_customer()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.deduct_money"><code class="docutils literal notranslate"><span class="pre">deduct_money()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.delete_customer"><code class="docutils literal notranslate"><span class="pre">delete_customer()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.get_all_customers"><code class="docutils literal notranslate"><span class="pre">get_all_customers()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.get_customer_by_username"><code class="docutils literal notranslate"><span class="pre">get_customer_by_username()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.register_customer"><code class="docutils literal notranslate"><span class="pre">register_customer()</span></code></a></li>
+<li><a class="reference internal" href="#crud_customers.update_customer"><code class="docutils literal notranslate"><span class="pre">update_customer()</span></code></a></li>
+<li><a class="reference internal" href="#crud_inventory.add_item"><code class="docutils literal notranslate"><span class="pre">add_item()</span></code></a></li>
+<li><a class="reference internal" href="#crud_inventory.deduct_item"><code class="docutils literal notranslate"><span class="pre">deduct_item()</span></code></a></li>
+<li><a class="reference internal" href="#crud_inventory.delete_item"><code class="docutils literal notranslate"><span class="pre">delete_item()</span></code></a></li>
+<li><a class="reference internal" href="#crud_inventory.get_all_items"><code class="docutils literal notranslate"><span class="pre">get_all_items()</span></code></a></li>
+<li><a class="reference internal" href="#crud_inventory.get_product_by_id"><code class="docutils literal notranslate"><span class="pre">get_product_by_id()</span></code></a></li>
+<li><a class="reference internal" href="#crud_inventory.update_item"><code class="docutils literal notranslate"><span class="pre">update_item()</span></code></a></li>
+<li><a class="reference internal" href="#crud_sales.add_to_wishlist"><code class="docutils literal notranslate"><span class="pre">add_to_wishlist()</span></code></a></li>
+<li><a class="reference internal" href="#crud_sales.fetch_sales"><code class="docutils literal notranslate"><span class="pre">fetch_sales()</span></code></a></li>
+<li><a class="reference internal" href="#crud_sales.fetch_wishlist"><code class="docutils literal notranslate"><span class="pre">fetch_wishlist()</span></code></a></li>
+<li><a class="reference internal" href="#crud_sales.get_customer_purchases"><code class="docutils literal notranslate"><span class="pre">get_customer_purchases()</span></code></a></li>
+<li><a class="reference internal" href="#crud_sales.get_goods"><code class="docutils literal notranslate"><span class="pre">get_goods()</span></code></a></li>
+<li><a class="reference internal" href="#crud_sales.get_specific_goods"><code class="docutils literal notranslate"><span class="pre">get_specific_goods()</span></code></a></li>
+<li><a class="reference internal" href="#crud_sales.recommend_products"><code class="docutils literal notranslate"><span class="pre">recommend_products()</span></code></a></li>
+<li><a class="reference internal" href="#crud_sales.record_sale"><code class="docutils literal notranslate"><span class="pre">record_sale()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.delete_review"><code class="docutils literal notranslate"><span class="pre">delete_review()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.get_customer_reviews"><code class="docutils literal notranslate"><span class="pre">get_customer_reviews()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.get_product_reviews"><code class="docutils literal notranslate"><span class="pre">get_product_reviews()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.get_review_by_id"><code class="docutils literal notranslate"><span class="pre">get_review_by_id()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.get_review_details"><code class="docutils literal notranslate"><span class="pre">get_review_details()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.moderate_review"><code class="docutils literal notranslate"><span class="pre">moderate_review()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.submit_review"><code class="docutils literal notranslate"><span class="pre">submit_review()</span></code></a></li>
+<li><a class="reference internal" href="#crud_reviews.update_review"><code class="docutils literal notranslate"><span class="pre">update_review()</span></code></a></li>
+<li><a class="reference internal" href="#connect_db.get_db_connection"><code class="docutils literal notranslate"><span class="pre">get_db_connection()</span></code></a></li>
+<li><a class="reference internal" href="#initialize_db.initialize_db"><code class="docutils literal notranslate"><span class="pre">initialize_db()</span></code></a></li>
+<li><a class="reference internal" href="#utils.decode_jwt"><code class="docutils literal notranslate"><span class="pre">decode_jwt()</span></code></a></li>
+<li><a class="reference internal" href="#utils.generate_jwt"><code class="docutils literal notranslate"><span class="pre">generate_jwt()</span></code></a></li>
+<li><a class="reference internal" href="#utils.jwt_required"><code class="docutils literal notranslate"><span class="pre">jwt_required()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Database</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Database documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="database-documentation">
+<h1>Database documentation<a class="headerlink" href="#database-documentation" title="Link to this heading"></a></h1>
+<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
+documentation for details.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="module-app">
+<span id="modules"></span><h1>Modules<a class="headerlink" href="#module-app" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.add_money_to_wallet">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">add_money_to_wallet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.add_money_to_wallet" title="Link to this definition"></a></dt>
+<dd><p>Charge a Customer’s Wallet</p>
+<p>Adds a specified amount of money to a customer’s wallet.</p>
+<dl>
+<dt>Args:</dt><dd><p>username (str): The username of the customer to charge.</p>
+</dd>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“amount”: 50.0</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Response (JSON): </dt><dd><ul class="simple">
+<li><p>A success message with status code 200, or</p></li>
+<li><p>An error message with status code 400/404.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.add_to_user_wishlist">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">add_to_user_wishlist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.add_to_user_wishlist" title="Link to this definition"></a></dt>
+<dd><p>Add a product to the customer’s wishlist.</p>
+<dl>
+<dt>Args:</dt><dd><p>username (str): The username of the customer.</p>
+</dd>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“product_id”: int  # The ID of the product to add to the wishlist.</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object indicating success or failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.before_request">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">before_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.before_request" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.create_customer">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">create_customer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.create_customer" title="Link to this definition"></a></dt>
+<dd><p>Register a New Customer</p>
+<p>Accepts a JSON payload with customer details and registers the customer in the database.</p>
+<dl>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“full_name”: “John Doe”,
+“username”: “johndoe”,
+“password”: “password123”,
+“age”: 30,
+“address”: “123 Elm St”,
+“gender”: “Male”,
+“marital_status”: “Single”</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Response (JSON): </dt><dd><ul class="simple">
+<li><p>A success message with status code 201, or</p></li>
+<li><p>An error message with status code 400/409.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.create_item">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">create_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.create_item" title="Link to this definition"></a></dt>
+<dd><p>Create a new inventory item.</p>
+<dl class="simple">
+<dt>Accepts a JSON payload with the following fields:</dt><dd><ul class="simple">
+<li><p>name (str): The name of the item.</p></li>
+<li><p>category (str): The category of the item (e.g., food, clothes, accessories, electronics).</p></li>
+<li><p>price (float): The price per item.</p></li>
+<li><p>description (str): A brief description of the item.</p></li>
+<li><p>stock (int): The count of available items in stock.</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object indicating success or failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.create_review">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">create_review</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.create_review" title="Link to this definition"></a></dt>
+<dd><p>Submits a new review for a product.</p>
+<p>This endpoint allows a customer to submit a review with a rating and optional comment for a specific product.</p>
+<dl>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“product_id”: int,
+“rating”: int (1-5),
+“comment”: str (optional)</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Response (JSON):</dt><dd><ul class="simple">
+<li><p>Success message with status code 201, or</p></li>
+<li><p>Error message with status code 400 if required fields are missing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.create_sale">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">create_sale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.create_sale" title="Link to this definition"></a></dt>
+<dd><p>Create a new sale record.</p>
+<dl class="simple">
+<dt>Expects:</dt><dd><p>JSON payload with ‘customer_username’, ‘product_id’, and ‘quantity’.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object indicating success or failure message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.deduct_stock_from_item">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">deduct_stock_from_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.deduct_stock_from_item" title="Link to this definition"></a></dt>
+<dd><p>Deduct stock for a specific item in the inventory.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to deduct stock from.</p>
+</dd>
+<dt>Accepts a JSON payload with the field:</dt><dd><ul class="simple">
+<li><p>count (int): The number of items to deduct.</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object indicating success or failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_all_customers">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_all_customers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_all_customers" title="Link to this definition"></a></dt>
+<dd><p>Retrieve All Customers</p>
+<p>Retrieves a list of all customers in the database, excluding sensitive information like passwords.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Response (JSON): A list of customers with status code 200.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_customer">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_customer" title="Link to this definition"></a></dt>
+<dd><p>Retrieve a Single Customer by Username</p>
+<p>Retrieves a specific customer’s details by their username, excluding sensitive information.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to retrieve.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response (JSON): The customer’s details with status code 200 or an error message with status code 404.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_customer_reviews">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_customer_reviews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_customer_reviews" title="Link to this definition"></a></dt>
+<dd><p>Retrieves all reviews submitted by a specific customer.</p>
+<p>This endpoint fetches all reviews written by a customer, identified by their username, filtered by a status of ‘Pending’ or ‘Approved’.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer whose reviews are being retrieved.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response (JSON): A list of reviews with status code 200.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_inventory">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_inventory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_inventory" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all inventory items.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Response: JSON object with a list of inventory items.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_product_reviews">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_product_reviews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_product_reviews" title="Link to this definition"></a></dt>
+<dd><p>Retrieves all reviews for a specific product.</p>
+<p>This endpoint fetches all reviews associated with a given product ID, filtered by a status of ‘Pending’ or ‘Approved’.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (int): The ID of the product for which reviews are being retrieved.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response (JSON): A list of reviews with status code 200.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_review_details">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_review_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_review_details" title="Link to this definition"></a></dt>
+<dd><p>Retrieves details for a specific review.</p>
+<p>This endpoint fetches detailed information about a review, such as the product ID, customer username, rating, comment, and timestamp.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): The ID of the review to retrieve.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Response (JSON):</dt><dd><ul class="simple">
+<li><p>Review details with status code 200, or</p></li>
+<li><p>Error message with status code 404 if the review is not found or flagged.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.get_goods_sales">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">get_goods_sales</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.get_goods_sales" title="Link to this definition"></a></dt>
+<dd><p>Retrieve available goods for sale.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Response: JSON object containing a list of goods, including their names and prices.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.get_purchases">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">get_purchases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.get_purchases" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all historical purchases of a specific customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object containing a list of purchases made by the customer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.get_recommendations">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">get_recommendations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.get_recommendations" title="Link to this definition"></a></dt>
+<dd><p>Fetch recommendations for a customer based on purchase history.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object containing a list of recommended products.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.get_sales">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">get_sales</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.get_sales" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all sales records.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Response: JSON object containing a list of sales.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.get_specific_good">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">get_specific_good</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.get_specific_good" title="Link to this definition"></a></dt>
+<dd><p>Retrieve full details of a specific good.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (int): The ID of the product to retrieve.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Response: JSON object containing detailed information about the product,</dt><dd><p>or an error message if the product is not found.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.get_user_wishlist">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">get_user_wishlist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.get_user_wishlist" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the wishlist of a specific customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object containing a list of products in the customer’s wishlist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.login">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.login" title="Link to this definition"></a></dt>
+<dd><p>Authenticate a user and issue a JWT token.</p>
+<dl>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“username”: “user1”,
+“password”: “password123”</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON with JWT token if successful, error message otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.moderate_review_status">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">moderate_review_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.moderate_review_status" title="Link to this definition"></a></dt>
+<dd><p>Moderates a review by updating its status.</p>
+<p>This endpoint allows an administrator to change the status of a review to either ‘Approved’ or ‘Flagged’.</p>
+<dl>
+<dt>Args:</dt><dd><p>review_id (int): The ID of the review to be moderated.</p>
+</dd>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“status”: str (e.g., ‘Approved’, ‘Flagged’)</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Response (JSON):</dt><dd><ul class="simple">
+<li><p>Success message with status code 200, or</p></li>
+<li><p>Error message with status code 400 if an invalid status is provided.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.modify_customer">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">modify_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.modify_customer" title="Link to this definition"></a></dt>
+<dd><p>Updates information for an existing customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to update.
+<a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs: Key-value pairs representing the fields to update.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>dict: </dt><dd><ul class="simple">
+<li><p>“message” (str): Success message if the update is successful.</p></li>
+<li><p>“error” (str): Error message if the customer does not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.modify_item">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">modify_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.modify_item" title="Link to this definition"></a></dt>
+<dd><p>Update fields for a specific inventory item.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to update.</p>
+</dd>
+</dl>
+<p>Accepts a JSON payload with key-value pairs for the fields to update.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Response: JSON object indicating success or failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.modify_review">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">modify_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.modify_review" title="Link to this definition"></a></dt>
+<dd><p>Modify an existing review.
+This endpoint allows a user to modify a review identified by its ID. The user must be authenticated
+and authorized to modify the review. Only the user who created the review or an admin can modify it.
+Args:</p>
+<blockquote>
+<div><p>review_id (int): The ID of the review to be modified.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Response: A JSON response containing the updated review data if successful, or an error message
+with the appropriate HTTP status code if the review is not found or the user is not authorized.</p>
+</dd>
+<dt>Raises:</dt><dd><p>404: If the review with the specified ID is not found.
+403: If the user is not authorized to modify the review.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.remove_customer">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">remove_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.remove_customer" title="Link to this definition"></a></dt>
+<dd><p>Delete a Customer by Username</p>
+<p>Deletes a customer from the database using their username.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to delete.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response (JSON): A success message with status code 200 or an error message with status code 404.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.remove_item">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">remove_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.remove_item" title="Link to this definition"></a></dt>
+<dd><p>Delete an inventory item by ID.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to delete.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON object indicating success or failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.remove_review">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">remove_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.remove_review" title="Link to this definition"></a></dt>
+<dd><p>Deletes a review if the user is the author or an admin.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: JSON message indicating success or error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.subtract_money_from_wallet">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">subtract_money_from_wallet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.subtract_money_from_wallet" title="Link to this definition"></a></dt>
+<dd><p>Deduct Money from a Customer’s Wallet</p>
+<p>Deducts a specified amount of money from a customer’s wallet if sufficient funds are available.</p>
+<dl>
+<dt>Args:</dt><dd><p>username (str): The username of the customer to deduct money from.</p>
+</dd>
+<dt>Request Body:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“amount”: 20.0</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response (JSON): A success message with status code 200 or an error message with status code 400/404.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-crud_customers">
+<dt class="sig sig-object py" id="crud_customers.charge_customer">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">charge_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.charge_customer" title="Link to this definition"></a></dt>
+<dd><p>Charges a customer’s wallet by adding a specified amount.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to charge.
+amount (float): The amount to add to the wallet.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>dict: A dictionary containing:</dt><dd><ul class="simple">
+<li><p>“message” (str): Success message if the wallet is charged successfully.</p></li>
+<li><p>“error” (str): Error message if the customer does not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.deduct_money">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">deduct_money</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.deduct_money" title="Link to this definition"></a></dt>
+<dd><p>Deducts a specified amount from a customer’s wallet.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer.
+amount (float): The amount to deduct from the wallet.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>dict: A dictionary containing:</dt><dd><ul class="simple">
+<li><p>“message” (str): Success message if the amount is deducted successfully.</p></li>
+<li><p>“error” (str): Error message if the customer does not exist or if there are insufficient funds.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.delete_customer">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">delete_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.delete_customer" title="Link to this definition"></a></dt>
+<dd><p>Deletes a customer from the database by their username.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to delete.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>dict: A dictionary containing:</dt><dd><ul class="simple">
+<li><p>“message” (str): Success message if deletion is successful.</p></li>
+<li><p>“error” (str): Error message if the customer does not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.get_all_customers">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">get_all_customers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.get_all_customers" title="Link to this definition"></a></dt>
+<dd><p>Retrieves all customers from the database, excluding passwords.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>list: A list of dictionaries, each containing customer details:</dt><dd><ul class="simple">
+<li><p>CustomerID</p></li>
+<li><p>FullName</p></li>
+<li><p>Username</p></li>
+<li><p>Age</p></li>
+<li><p>Address</p></li>
+<li><p>Gender</p></li>
+<li><p>MaritalStatus</p></li>
+<li><p>Wallet</p></li>
+<li><p>UserRole</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.get_customer_by_username">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">get_customer_by_username</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.get_customer_by_username" title="Link to this definition"></a></dt>
+<dd><p>Retrieves a single customer’s details by their username, excluding the password.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to retrieve.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary containing customer details or None if the customer does not exist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.register_customer">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">register_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marital_status</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.register_customer" title="Link to this definition"></a></dt>
+<dd><p>Registers a new customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>full_name (str): Full name of the customer.
+username (str): Unique username for the customer.
+password (str): Password for the customer.
+age (int): Age of the customer.
+address (str): Address of the customer.
+gender (str): Gender of the customer.
+marital_status (str): Marital status of the customer.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>dict: </dt><dd><ul class="simple">
+<li><p>“message” (str): Success message if registration is successful.</p></li>
+<li><p>“error” (str): Error message if the username already exists.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_customers.update_customer">
+<span class="sig-prename descclassname"><span class="pre">crud_customers.</span></span><span class="sig-name descname"><span class="pre">update_customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_customers.update_customer" title="Link to this definition"></a></dt>
+<dd><p>Updates information for an existing customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer to update.
+<a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs: Key-value pairs representing the fields to update.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary containing a success message or an error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-crud_inventory">
+<dt class="sig sig-object py" id="crud_inventory.add_item">
+<span class="sig-prename descclassname"><span class="pre">crud_inventory.</span></span><span class="sig-name descname"><span class="pre">add_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stock</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_inventory.add_item" title="Link to this definition"></a></dt>
+<dd><p>Add a new item to the inventory, or update stock if item with same name and price exists.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): The name of the item.
+category (str): The category of the item (e.g., food, clothes, accessories, electronics).
+price (float): The price of a single item.
+description (str): A brief description of the item.
+stock (int): The number of items available in stock.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary with a success message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_inventory.deduct_item">
+<span class="sig-prename descclassname"><span class="pre">crud_inventory.</span></span><span class="sig-name descname"><span class="pre">deduct_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_inventory.deduct_item" title="Link to this definition"></a></dt>
+<dd><p>Deduct stock for a specific item in the inventory.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to be deducted.
+count (int): The number of items to deduct from stock.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary with a success message or an error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_inventory.delete_item">
+<span class="sig-prename descclassname"><span class="pre">crud_inventory.</span></span><span class="sig-name descname"><span class="pre">delete_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_inventory.delete_item" title="Link to this definition"></a></dt>
+<dd><p>Delete a specific item from the inventory.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to delete.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary with a success message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_inventory.get_all_items">
+<span class="sig-prename descclassname"><span class="pre">crud_inventory.</span></span><span class="sig-name descname"><span class="pre">get_all_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#crud_inventory.get_all_items" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all items from the inventory.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list: A list of dictionaries containing item details.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_inventory.get_product_by_id">
+<span class="sig-prename descclassname"><span class="pre">crud_inventory.</span></span><span class="sig-name descname"><span class="pre">get_product_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_inventory.get_product_by_id" title="Link to this definition"></a></dt>
+<dd><p>Retrieve a specific item from the inventory by its ID.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to retrieve.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary containing the item details.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_inventory.update_item">
+<span class="sig-prename descclassname"><span class="pre">crud_inventory.</span></span><span class="sig-name descname"><span class="pre">update_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fields</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_inventory.update_item" title="Link to this definition"></a></dt>
+<dd><p>Update the details of a specific item in the inventory.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>item_id (int): The ID of the item to update.
+<a href="#id5"><span class="problematic" id="id6">**</span></a>fields: Key-value pairs of fields to update (e.g., name=’new name’, price=99.99).</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary with a success message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-crud_sales">
+<dt class="sig sig-object py" id="crud_sales.add_to_wishlist">
+<span class="sig-prename descclassname"><span class="pre">crud_sales.</span></span><span class="sig-name descname"><span class="pre">add_to_wishlist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_sales.add_to_wishlist" title="Link to this definition"></a></dt>
+<dd><p>Add a product to the wishlist of a specific customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer.
+product_id (int): The ID of the product to add to the wishlist.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary containing a success or error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_sales.fetch_sales">
+<span class="sig-prename descclassname"><span class="pre">crud_sales.</span></span><span class="sig-name descname"><span class="pre">fetch_sales</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#crud_sales.fetch_sales" title="Link to this definition"></a></dt>
+<dd><p>Fetch all sales records.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list: A list of dictionaries with all the sales records.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_sales.fetch_wishlist">
+<span class="sig-prename descclassname"><span class="pre">crud_sales.</span></span><span class="sig-name descname"><span class="pre">fetch_wishlist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_sales.fetch_wishlist" title="Link to this definition"></a></dt>
+<dd><p>Fetch the wishlist of a specific customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: A list of dictionaries containing the wishlist items.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_sales.get_customer_purchases">
+<span class="sig-prename descclassname"><span class="pre">crud_sales.</span></span><span class="sig-name descname"><span class="pre">get_customer_purchases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_sales.get_customer_purchases" title="Link to this definition"></a></dt>
+<dd><p>Fetch the purchase history of a specific customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: A list of dictionaries containing the purchase history.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_sales.get_goods">
+<span class="sig-prename descclassname"><span class="pre">crud_sales.</span></span><span class="sig-name descname"><span class="pre">get_goods</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#crud_sales.get_goods" title="Link to this definition"></a></dt>
+<dd><p>Fetch all goods records with product name and price from the inventory.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list: A list of dictionaries with all the goods records including product name and price.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_sales.get_specific_goods">
+<span class="sig-prename descclassname"><span class="pre">crud_sales.</span></span><span class="sig-name descname"><span class="pre">get_specific_goods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_sales.get_specific_goods" title="Link to this definition"></a></dt>
+<dd><p>Fetch a specific product from the inventory.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (int): The ID of the product to fetch.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary containing the product details.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_sales.recommend_products">
+<span class="sig-prename descclassname"><span class="pre">crud_sales.</span></span><span class="sig-name descname"><span class="pre">recommend_products</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_sales.recommend_products" title="Link to this definition"></a></dt>
+<dd><p>Recommends products to a customer based on their purchase history.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): The username of the customer.
+limit (int): Maximum number of products to recommend.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: List of recommended products.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_sales.record_sale">
+<span class="sig-prename descclassname"><span class="pre">crud_sales.</span></span><span class="sig-name descname"><span class="pre">record_sale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">customer_username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_sales.record_sale" title="Link to this definition"></a></dt>
+<dd><p>Records a sale transaction if the purchase is valid, and adds the purchase in the purchase history of the customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>customer_username (str): The username of the customer.
+product_id (int): The ID of the product being purchased.
+quantity (int): The quantity of the product to purchase.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary containing a success or error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-crud_reviews">
+<dt class="sig sig-object py" id="crud_reviews.delete_review">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">delete_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.delete_review" title="Link to this definition"></a></dt>
+<dd><p>Deletes a specific review.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Success or error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.get_customer_reviews">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">get_customer_reviews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.get_customer_reviews" title="Link to this definition"></a></dt>
+<dd><p>Retrieves all reviews submitted by a specific customer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): Customer’s username.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: List of reviews submitted by the customer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.get_product_reviews">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">get_product_reviews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.get_product_reviews" title="Link to this definition"></a></dt>
+<dd><p>Retrieves all reviews for a specific product.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (int): ID of the product.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: List of reviews for the product.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.get_review_by_id">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">get_review_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.get_review_by_id" title="Link to this definition"></a></dt>
+<dd><p>Fetches a review by its ID.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: The review details or None if not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.get_review_details">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">get_review_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.get_review_details" title="Link to this definition"></a></dt>
+<dd><p>Retrieves detailed information for a specific review.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Review details.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.moderate_review">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">moderate_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.moderate_review" title="Link to this definition"></a></dt>
+<dd><p>Moderates a review by updating its status.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.
+status (str): New status (‘Approved’ or ‘Flagged’).</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Success or error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.submit_review">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">submit_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rating</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.submit_review" title="Link to this definition"></a></dt>
+<dd><p>Allows a customer to submit a new review for a product.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>product_id (int): ID of the product.
+username (str): Customer’s username.
+rating (int): Rating between 1 to 5.
+comment (str): Optional review comment.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Success or error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud_reviews.update_review">
+<span class="sig-prename descclassname"><span class="pre">crud_reviews.</span></span><span class="sig-name descname"><span class="pre">update_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rating</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crud_reviews.update_review" title="Link to this definition"></a></dt>
+<dd><p>Updates an existing review with a new rating or comment.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>review_id (int): ID of the review.
+rating (int, optional): Updated rating.
+comment (str, optional): Updated comment.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Success or error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-connect_db">
+<dt class="sig sig-object py" id="connect_db.get_db_connection">
+<span class="sig-prename descclassname"><span class="pre">connect_db.</span></span><span class="sig-name descname"><span class="pre">get_db_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#connect_db.get_db_connection" title="Link to this definition"></a></dt>
+<dd><p>Get a connection to the database.
+Uses the database path from Flask’s app config.</p>
+</dd></dl>
+
+<dl class="py function" id="module-initialize_db">
+<dt class="sig sig-object py" id="initialize_db.initialize_db">
+<span class="sig-prename descclassname"><span class="pre">initialize_db.</span></span><span class="sig-name descname"><span class="pre">initialize_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ecommerce.db'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#initialize_db.initialize_db" title="Link to this definition"></a></dt>
+<dd><p>Initialize the database by creating tables and inserting initial data.</p>
+<dl class="simple">
+<dt>Steps:</dt><dd><ol class="arabic simple">
+<li><p>Connect to the SQLite database ‘ecommerce.db’.</p></li>
+<li><p>Execute the SQL schema from ‘schema.sql’ to create necessary tables.</p></li>
+<li><p>Insert an initial admin user into the Customers table with the following attributes:
+- FullName: ‘Admin User’
+- Username: ‘admin’
+- Password: Hashed password of ‘admin_password’
+- Age: 30
+- Address: ‘123 Admin St’
+- Gender: ‘Male’
+- MaritalStatus: ‘Single’
+- Wallet: 0
+- UserRole: 1 (indicating admin role)</p></li>
+<li><p>Commit the changes and close the database connection.</p></li>
+</ol>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-utils">
+<dt class="sig sig-object py" id="utils.decode_jwt">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">decode_jwt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.decode_jwt" title="Link to this definition"></a></dt>
+<dd><p>Decode and validate a JWT.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>token (str): JWT token.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Decoded payload if valid, or an error message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.generate_jwt">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">generate_jwt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.generate_jwt" title="Link to this definition"></a></dt>
+<dd><p>Generate a JWT for the given user.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): Username of the user.
+user_role (int): Role of the user (0: Customer, 1: Admin).</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: JWT token.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.jwt_required">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">jwt_required</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">admin_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.jwt_required" title="Link to this definition"></a></dt>
+<dd><p>Decorator to protect routes with JWT authentication.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>admin_only (bool): If True, requires admin privileges.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Function: Wrapped route function.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Ahmad Dimashkie, Saja Borghol.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
