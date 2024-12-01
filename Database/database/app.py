@@ -29,10 +29,12 @@ from werkzeug.security import check_password_hash
 
 app = Flask(__name__)
 
+
 @app.before_request
 def before_request():
     # Ensure the app uses the correct database path
     app.config['DATABASE'] = app.config.get('DATABASE', 'ecommerce.db')
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -64,7 +66,7 @@ def login():
     return jsonify({"token": token}), 200
 
 
-################################################Customer##################################################
+################################################ Customer##################################################
 # Register a New Customer
 @app.route('/db/customers', methods=['POST'])
 @jwt_required(admin_only=True)
@@ -269,7 +271,7 @@ def subtract_money_from_wallet(username):
     return jsonify(response), 200
 
 
-###############################################Inventory#####################################################
+############################################### Inventory#####################################################
 
 @app.route('/db/inventory', methods=['GET'])
 @jwt_required(admin_only=True)
@@ -282,6 +284,7 @@ def fetch_inventory():
     """
     items = get_all_items()
     return jsonify(items), 200
+
 
 @app.route('/db/inventory', methods=['POST'])
 @jwt_required(admin_only=True)
@@ -304,8 +307,10 @@ def create_item():
     if not all(field in data for field in required_fields):
         return jsonify({"error": "Missing required fields"}), 400
 
-    response = add_item(data['name'], data['category'], data['price'], data['description'], data['stock'])
+    response = add_item(data['name'], data['category'],
+                        data['price'], data['description'], data['stock'])
     return jsonify(response), 201
+
 
 @app.route('/db/inventory/<int:item_id>', methods=['PUT'])
 @jwt_required(admin_only=True)
@@ -327,6 +332,7 @@ def modify_item(item_id):
 
     response = update_item(item_id, **data)
     return jsonify(response), 200
+
 
 @app.route('/db/inventory/<int:item_id>/deduct', methods=['POST'])
 @jwt_required(admin_only=True)
@@ -352,6 +358,7 @@ def deduct_stock_from_item(item_id):
         return jsonify(response), 400
     return jsonify(response), 200
 
+
 @app.route('/db/inventory/<int:item_id>', methods=['DELETE'])
 @jwt_required(admin_only=True)
 def remove_item(item_id):
@@ -368,7 +375,7 @@ def remove_item(item_id):
     return jsonify(response), 200
 
 
-############################################################Sales####################################################
+############################################################ Sales####################################################
 
 @app.route('/db/sales', methods=['POST'])
 @jwt_required()
@@ -398,6 +405,8 @@ def create_sale():
     return jsonify(response), 201
 
 # Fetch all sales
+
+
 @app.route('/db/sales', methods=['GET'])
 @jwt_required(admin_only=True)
 def get_sales():
@@ -410,6 +419,7 @@ def get_sales():
     sales = fetch_sales()
     return jsonify(sales), 200
 
+
 @app.route('/db/sales/goods', methods=['GET'])
 @jwt_required()
 def get_goods_sales():
@@ -421,6 +431,7 @@ def get_goods_sales():
     """
     goods = get_goods()
     return jsonify(goods), 200
+
 
 @app.route('/db/sales/good/<int:product_id>', methods=['GET'])
 @jwt_required()
@@ -440,6 +451,7 @@ def get_specific_good(product_id):
         return jsonify({"error": "Product not found"}), 404
     return jsonify(product), 200
 
+
 @app.route('/db/sales/customer/<username>', methods=['GET'])
 @jwt_required()
 def get_purchases(username):
@@ -458,6 +470,7 @@ def get_purchases(username):
 
     purchases = get_customer_purchases(username)
     return jsonify(purchases), 200
+
 
 @app.route('/db/sales/wishlist/<username>', methods=['POST'])
 @jwt_required()
@@ -488,6 +501,7 @@ def add_to_user_wishlist(username):
     response = add_to_wishlist(username, product_id)
     return jsonify(response), 200
 
+
 @app.route('/db/sales/wishlist/<username>', methods=['GET'])
 @jwt_required()
 def get_user_wishlist(username):
@@ -506,7 +520,8 @@ def get_user_wishlist(username):
     wishlist = fetch_wishlist(username)
     return jsonify(wishlist), 200
 
-@app.route('db/sales/recommendations/<username>', methods=['GET'])
+
+@app.route('/db/sales/recommendations/<username>', methods=['GET'])
 @jwt_required()
 def get_recommendations(username):
     """
@@ -526,7 +541,8 @@ def get_recommendations(username):
         return jsonify({"message": "No recommendations available."}), 200
     return jsonify(recommendations), 200
 
-##############################################Reviews####################################################
+############################################## Reviews####################################################
+
 
 @app.route('/reviews', methods=['POST'])
 @jwt_required()
@@ -552,11 +568,13 @@ def create_review():
     required_fields = ['product_id', 'rating']
     if not all(field in data for field in required_fields):
         return jsonify({"error": "Missing required fields"}), 400
-    
+
     user = request.user  # Added by `jwt_required` decorator
     username = user.get("username")
-    response = submit_review(data['product_id'], username, data['rating'], data.get('comment'))
+    response = submit_review(
+        data['product_id'], username, data['rating'], data.get('comment'))
     return jsonify(response), 201
+
 
 @app.route('/reviews/<int:review_id>', methods=['PUT'])
 @jwt_required()
@@ -581,13 +599,15 @@ def modify_review(review_id):
     review = get_review_by_id(review_id)
     if not review:
         return jsonify({"error": "Review not found"}), 404
-    
+
     if review["CustomerUsername"] != username and user_role != 1:
         return jsonify({"error": "Permission denied"}), 403
-    
+
     data = request.get_json()
-    response = update_review(review_id, data.get('rating'), data.get('comment'))
+    response = update_review(
+        review_id, data.get('rating'), data.get('comment'))
     return jsonify(response), 200
+
 
 @app.route('/reviews/<int:review_id>', methods=['DELETE'])
 @jwt_required()
@@ -619,6 +639,7 @@ def remove_review(review_id):
     response = delete_review(review_id)
     return jsonify(response), 200
 
+
 @app.route('/reviews/product/<int:product_id>', methods=['GET'])
 @jwt_required()
 def fetch_product_reviews(product_id):
@@ -635,6 +656,7 @@ def fetch_product_reviews(product_id):
     """
     reviews = get_product_reviews(product_id)
     return jsonify(reviews), 200
+
 
 @app.route('/reviews/customer/<username>', methods=['GET'])
 @jwt_required()
@@ -655,6 +677,7 @@ def fetch_customer_reviews(username):
         return jsonify({"error": "Permission denied"}), 403
     reviews = get_customer_reviews(username)
     return jsonify(reviews), 200
+
 
 @app.route('/reviews/<int:review_id>/moderate', methods=['PUT'])
 @jwt_required(admin_only=True)
@@ -681,6 +704,7 @@ def moderate_review_status(review_id):
     response = moderate_review(review_id, data.get('status'))
     return jsonify(response), 200
 
+
 @app.route('/reviews/<int:review_id>', methods=['GET'])
 @jwt_required()
 def fetch_review_details(review_id):
@@ -701,6 +725,7 @@ def fetch_review_details(review_id):
     if not review:
         return jsonify({"error": "Review not found or has been flagged by Admin"}), 404
     return jsonify(review), 200
+
 
 if __name__ == '__main__':
     initialize_db()

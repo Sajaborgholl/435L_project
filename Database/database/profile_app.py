@@ -8,7 +8,8 @@ from memory_profiler import profile
 admin_token = generate_jwt("admin", 1)  # Admin user
 user_token = generate_jwt("johndoe", 0)  # Regular user
 
-def safe_request(client, method, url, headers=None, **kwargs):  
+
+def safe_request(client, method, url, headers=None, **kwargs):
     """
     Safely perform a request and log errors if any.
     """
@@ -17,7 +18,8 @@ def safe_request(client, method, url, headers=None, **kwargs):
     except Exception as e:
         print(f"Exception during {method.upper()} {url}: {e}")
         return None
-    
+
+
 @profile
 def profile_app():
     with app.test_client() as client:
@@ -57,7 +59,8 @@ def profile_app():
         safe_request(client, "get", "/db/customers", headers=headers_admin)
 
         print("Fetching a specific customer...")
-        safe_request(client, "get", "/db/customers/johndoe", headers=headers_admin)
+        safe_request(client, "get", "/db/customers/johndoe",
+                     headers=headers_admin)
 
         print("Updating a customer...")
         safe_request(client, "put", "/db/customers/johndoe", headers=headers_admin, json={
@@ -68,9 +71,10 @@ def profile_app():
         safe_request(client, "post", "/db/customers/johndoe/deduct", headers=headers_admin, json={
             "amount": 20.0
         })
-        
+
         print("Deleting a customer...")
-        safe_request(client, "delete", "/db/customers/johndoe", headers=headers_admin)
+        safe_request(client, "delete", "/db/customers/johndoe",
+                     headers=headers_admin)
 
         # Inventory
         print("Fetching inventory...")
@@ -87,7 +91,8 @@ def profile_app():
         })
 
         print("Deleting an inventory item...")
-        safe_request(client, "delete", "/db/inventory/1", headers=headers_admin)
+        safe_request(client, "delete", "/db/inventory/1",
+                     headers=headers_admin)
 
         # Sales
         safe_request(client, "post", "/db/inventory", headers=headers_admin, json={
@@ -125,7 +130,8 @@ def profile_app():
         safe_request(client, "get", "/db/sales/good/3", headers=headers_user)
 
         print("Fetching customer purchases...")
-        safe_request(client, "get", "/db/sales/customer/johndoe", headers=headers_user)
+        safe_request(client, "get", "/db/sales/customer/johndoe",
+                     headers=headers_user)
 
         print("Adding to wishlist...")
         safe_request(client, "post", "/db/sales/wishlist/johndoe", headers=headers_user, json={
@@ -133,12 +139,14 @@ def profile_app():
         })
 
         print("Fetching wishlist...")
-        safe_request(client, "get", "/db/sales/wishlist/johndoe", headers=headers_user)
+        safe_request(client, "get", "/db/sales/wishlist/johndoe",
+                     headers=headers_user)
 
         print("Fetching recommendations...")
-        safe_request(client, "get", "db/sales/recommendations/johndoe", headers=headers_user)
+        safe_request(
+            client, "get", "/db/sales/recommendations/johndoe", headers=headers_user)
 
-        #Reviews
+        # Reviews
         print("Submitting a review...")
         safe_request(client, "post", "/reviews", headers=headers_user, json={
             "product_id": 10,
@@ -147,11 +155,12 @@ def profile_app():
         })
 
         print("Fetching product reviews...")
-        safe_request(client, "get", "/reviews/product/10", headers=headers_user)
+        safe_request(client, "get", "/reviews/product/10",
+                     headers=headers_user)
 
         print("Fetching customer reviews...")
-        safe_request(client, "get", "/reviews/customer/johndoe", headers=headers_user)
-        
+        safe_request(client, "get", "/reviews/customer/johndoe",
+                     headers=headers_user)
 
         print("Updating a review...")
         safe_request(client, "put", "/reviews/1", headers=headers_user, json={
@@ -170,7 +179,7 @@ def profile_app():
         print("Deleting a review...")
         safe_request(client, "delete", "/reviews/1", headers=headers_user)
 
-        
+
 if __name__ == "__main__":
     # Run the profiler
     profiler = cProfile.Profile()
