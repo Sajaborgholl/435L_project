@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>app package &#8212; Reviews Service  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Sales Service documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="app-package">
+<h1>app package<a class="headerlink" href="#app-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-app.app">
+<span id="app-app-module"></span><h2>app.app module<a class="headerlink" href="#module-app.app" title="Link to this heading">¶</a></h2>
+<p>The flask object implements a WSGI application and acts as the central
+object.  It is passed the name of the module or package of the
+application.  Once it is created it will act as a central registry for
+the view functions, the URL rules, template configuration and much more.</p>
+<p>The name of the package is used to resolve resources from inside the
+package or the folder the module is contained in depending on if the
+package parameter resolves to an actual python package (a folder with
+an <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> file inside) or a standard module (just a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file).</p>
+<p>For more information about resource loading, see <code class="xref py py-func docutils literal notranslate"><span class="pre">open_resource()</span></code>.</p>
+<p>Usually you create a <code class="xref py py-class docutils literal notranslate"><span class="pre">Flask</span></code> instance in your main module or
+in the <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> file of your package like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-about-the-first-parameter admonition">
+<p class="admonition-title">About the First Parameter</p>
+<p>The idea of the first parameter is to give Flask an idea of what
+belongs to your application.  This name is used to find resources
+on the filesystem, can be used by extensions to improve debugging
+information and a lot more.</p>
+<p>So it’s important what you provide there.  If you are using a single
+module, <cite>__name__</cite> is always the correct value.  If you however are
+using a package, it’s usually recommended to hardcode the name of
+your package there.</p>
+<p>For example if your application is defined in <code class="file docutils literal notranslate"><span class="pre">yourapplication/app.py</span></code>
+you should create it with one of the two versions below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="s1">&#39;yourapplication&#39;</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Why is that?  The application will work even with <cite>__name__</cite>, thanks
+to how resources are looked up.  However it will make debugging more
+painful.  Certain extensions can make assumptions based on the
+import name of your application.  For example the Flask-SQLAlchemy
+extension will look for the code in your application that triggered
+an SQL query in debug mode.  If the import name is not properly set
+up, that debugging information is lost.  (For example it would only
+pick up SQL queries in <cite>yourapplication.app</cite> and not
+<cite>yourapplication.views.frontend</cite>)</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.7: </span>The <cite>static_url_path</cite>, <cite>static_folder</cite>, and <cite>template_folder</cite>
+parameters were added.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.8: </span>The <cite>instance_path</cite> and <cite>instance_relative_config</cite> parameters were
+added.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.11: </span>The <cite>root_path</cite> parameter was added.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.0: </span>The <code class="docutils literal notranslate"><span class="pre">host_matching</span></code> and <code class="docutils literal notranslate"><span class="pre">static_host</span></code> parameters were added.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.0: </span>The <code class="docutils literal notranslate"><span class="pre">subdomain_matching</span></code> parameter was added. Subdomain
+matching needs to be enabled manually now. Setting
+<code class="xref py py-data docutils literal notranslate"><span class="pre">SERVER_NAME</span></code> does not implicitly enable it.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">param import_name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the name of the application package</p>
+</dd>
+<dt class="field-even">param static_url_path<span class="colon">:</span></dt>
+<dd class="field-even"><p>can be used to specify a different path for the
+static files on the web.  Defaults to the name
+of the <cite>static_folder</cite> folder.</p>
+</dd>
+<dt class="field-odd">param static_folder<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The folder with static files that is served at
+<code class="docutils literal notranslate"><span class="pre">static_url_path</span></code>. Relative to the application <code class="docutils literal notranslate"><span class="pre">root_path</span></code>
+or an absolute path. Defaults to <code class="docutils literal notranslate"><span class="pre">'static'</span></code>.</p>
+</dd>
+<dt class="field-even">param static_host<span class="colon">:</span></dt>
+<dd class="field-even"><p>the host to use when adding the static route.
+Defaults to None. Required when using <code class="docutils literal notranslate"><span class="pre">host_matching=True</span></code>
+with a <code class="docutils literal notranslate"><span class="pre">static_folder</span></code> configured.</p>
+</dd>
+<dt class="field-odd">param host_matching<span class="colon">:</span></dt>
+<dd class="field-odd"><p>set <code class="docutils literal notranslate"><span class="pre">url_map.host_matching</span></code> attribute.
+Defaults to False.</p>
+</dd>
+<dt class="field-even">param subdomain_matching<span class="colon">:</span></dt>
+<dd class="field-even"><p>consider the subdomain relative to
+<code class="xref py py-data docutils literal notranslate"><span class="pre">SERVER_NAME</span></code> when matching routes. Defaults to False.</p>
+</dd>
+<dt class="field-odd">param template_folder<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the folder that contains the templates that should
+be used by the application.  Defaults to
+<code class="docutils literal notranslate"><span class="pre">'templates'</span></code> folder in the root path of the
+application.</p>
+</dd>
+<dt class="field-even">param instance_path<span class="colon">:</span></dt>
+<dd class="field-even"><p>An alternative instance path for the application.
+By default the folder <code class="docutils literal notranslate"><span class="pre">'instance'</span></code> next to the
+package or module is assumed to be the instance
+path.</p>
+</dd>
+<dt class="field-odd">param instance_relative_config<span class="colon">:</span></dt>
+<dd class="field-odd"><p>if set to <code class="docutils literal notranslate"><span class="pre">True</span></code> relative filenames
+for loading the config are assumed to
+be relative to the instance path instead
+of the application root.</p>
+</dd>
+<dt class="field-even">param root_path<span class="colon">:</span></dt>
+<dd class="field-even"><p>The path to the root of the application files.
+This should only be set manually when it can’t be detected
+automatically, such as for namespace packages.</p>
+</dd>
+</dl>
+</section>
+<section id="app-controllers-module">
+<h2>app.controllers module<a class="headerlink" href="#app-controllers-module" title="Link to this heading">¶</a></h2>
+</section>
+<section id="app-utils-module">
+<h2>app.utils module<a class="headerlink" href="#app-utils-module" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-app">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-app" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.create_review">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">create_review</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.create_review" title="Link to this definition">¶</a></dt>
+<dd><p>Submit a new review for a product.</p>
+<dl>
+<dt><strong>Expects</strong>:</dt><dd><ul>
+<li><dl>
+<dt>JSON Payload:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“product_id”: int (required),
+“rating”: int (1-5, required),
+“comment”: str (optional)</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt><strong>Returns</strong>:</dt><dd><ul class="simple">
+<li><p><cite>201 Created</cite>: If the review is successfully created.</p></li>
+<li><p><cite>400 Bad Request</cite>: If required fields are missing.</p></li>
+<li><p><cite>500 Internal Server Error</cite>: If an internal error occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_customer_reviews">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_customer_reviews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_customer_reviews" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve all reviews submitted by a specific customer.</p>
+<dl class="simple">
+<dt><strong>Expects</strong>:</dt><dd><ul class="simple">
+<li><p>URL Parameter: <cite>username</cite> (str) - Username of the customer.</p></li>
+</ul>
+</dd>
+<dt><strong>Returns</strong>:</dt><dd><ul class="simple">
+<li><p><cite>200 OK</cite>: List of reviews by the customer.</p></li>
+<li><p><cite>403 Forbidden</cite>: If the user is not authorized to view the reviews.</p></li>
+<li><p><cite>500 Internal Server Error</cite>: If an internal error occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_product_reviews">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_product_reviews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_product_reviews" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve all reviews for a specific product.</p>
+<dl class="simple">
+<dt><strong>Expects</strong>:</dt><dd><ul class="simple">
+<li><p>URL Parameter: <cite>product_id</cite> (int) - ID of the product.</p></li>
+</ul>
+</dd>
+<dt><strong>Returns</strong>:</dt><dd><ul class="simple">
+<li><p><cite>200 OK</cite>: List of reviews for the product.</p></li>
+<li><p><cite>404 Not Found</cite>: If no reviews are found.</p></li>
+<li><p><cite>500 Internal Server Error</cite>: If an internal error occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.fetch_review_details">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">fetch_review_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.fetch_review_details" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve details for a specific review.</p>
+<dl class="simple">
+<dt><strong>Expects</strong>:</dt><dd><ul class="simple">
+<li><p>URL Parameter: <cite>review_id</cite> (int) - ID of the review to fetch.</p></li>
+</ul>
+</dd>
+<dt><strong>Returns</strong>:</dt><dd><ul class="simple">
+<li><p><cite>200 OK</cite>: Detailed information about the review.</p></li>
+<li><p><cite>404 Not Found</cite>: If the review does not exist or has been flagged.</p></li>
+<li><p><cite>500 Internal Server Error</cite>: If an internal error occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.moderate_review_status">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">moderate_review_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.moderate_review_status" title="Link to this definition">¶</a></dt>
+<dd><p>Moderate a review by updating its status.</p>
+<dl>
+<dt><strong>Expects</strong>:</dt><dd><ul>
+<li><p>URL Parameter: <cite>review_id</cite> (int) - ID of the review to moderate.</p></li>
+<li><dl>
+<dt>JSON Payload:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“status”: str (“Approved” or “Flagged”, required)</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt><strong>Returns</strong>:</dt><dd><ul class="simple">
+<li><p><cite>200 OK</cite>: If the status is successfully updated.</p></li>
+<li><p><cite>400 Bad Request</cite>: If the status is invalid.</p></li>
+<li><p><cite>500 Internal Server Error</cite>: If an internal error occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.modify_review">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">modify_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.modify_review" title="Link to this definition">¶</a></dt>
+<dd><p>Modify an existing review.</p>
+<dl>
+<dt><strong>Expects</strong>:</dt><dd><ul>
+<li><p>URL Parameter: <cite>review_id</cite> (int) - ID of the review to modify.</p></li>
+<li><dl>
+<dt>JSON Payload:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“rating”: int (1-5, optional),
+“comment”: str (optional)</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt><strong>Returns</strong>:</dt><dd><ul class="simple">
+<li><p><cite>200 OK</cite>: If the review is successfully updated.</p></li>
+<li><p><cite>403 Forbidden</cite>: If the user is not authorized to modify the review.</p></li>
+<li><p><cite>404 Not Found</cite>: If the review does not exist.</p></li>
+<li><p><cite>500 Internal Server Error</cite>: If an internal error occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.remove_review">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">remove_review</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">review_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.remove_review" title="Link to this definition">¶</a></dt>
+<dd><p>Delete a review if the user is the author or an admin.</p>
+<dl class="simple">
+<dt><strong>Expects</strong>:</dt><dd><ul class="simple">
+<li><p>URL Parameter: <cite>review_id</cite> (int) - ID of the review to delete.</p></li>
+</ul>
+</dd>
+<dt><strong>Returns</strong>:</dt><dd><ul class="simple">
+<li><p><cite>200 OK</cite>: If the review is successfully deleted.</p></li>
+<li><p><cite>403 Forbidden</cite>: If the user is not authorized to delete the review.</p></li>
+<li><p><cite>404 Not Found</cite>: If the review does not exist.</p></li>
+<li><p><cite>500 Internal Server Error</cite>: If an internal error occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Reviews Service</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">app package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.app">app.app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app-controllers-module">app.controllers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app-utils-module">app.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Sales Service documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Saja.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/app.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
